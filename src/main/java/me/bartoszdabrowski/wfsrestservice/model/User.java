@@ -1,20 +1,27 @@
 package me.bartoszdabrowski.wfsrestservice.model;
 
+import javax.persistence.*;
+
+@Entity(name= "user_core")
 public class User {
 
-    private int userId;
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(name = "user_id")
+    private int id;
+
+    @Column(name = "email")
     private String email;
+
+    @Column(name = "password")
     private String password;
 
-
-
-
-    public int getUserId() {
-        return userId;
+    public int getId() {
+        return id;
     }
 
-    public void setUserId(int userId) {
-        this.userId = userId;
+    public void setId(int id) {
+        this.id = id;
     }
 
     public String getEmail() {
