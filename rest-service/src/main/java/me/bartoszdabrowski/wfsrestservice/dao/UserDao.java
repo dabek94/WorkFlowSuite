@@ -9,14 +9,14 @@ import java.util.UUID;
 
 public interface UserDao {
 
-    int insertPerson(User user);
+    int insertUser(User user);
 
-    User selectUserById(int userId);
+    User selectUserById(String userUUID);
 
-    User selectUserByEmail(String email, String password);
+    User selectUserByEmailAndPassword(String email, String password);
 
-    int deleteUserById(int id);
+    int deleteUserById(String id);
 
-    int updateUserById(int id, User user);
+    int updateUserById(String id, User user);
 
 }

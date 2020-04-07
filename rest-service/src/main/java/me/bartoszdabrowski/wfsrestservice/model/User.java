@@ -6,23 +6,14 @@ import javax.persistence.*;
 public class User {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "user_id")
-    private int id;
-
-    @Column(name = "email")
+    @Column(name = "_email")
     private String email;
 
-    @Column(name = "password")
+    @Column(name = "_password")
     private String password;
 
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
+    @Column(name = "_uuid")
+    private String UUID;
 
     public String getEmail() {
         return email;
@@ -38,5 +29,13 @@ public class User {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public String getUUID() {
+        return UUID;
+    }
+
+    public void setUUID(String UUID) {
+        this.UUID = UUID;
     }
 }

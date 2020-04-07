@@ -8,15 +8,10 @@ import org.springframework.stereotype.Repository;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
-import javax.persistence.criteria.CriteriaBuilder;
-import javax.persistence.criteria.CriteriaQuery;
-import javax.persistence.criteria.Root;
 import javax.transaction.Transactional;
 import javax.validation.constraints.NotNull;
 import java.util.List;
-import java.util.Optional;
 
-//TODO WIP Implement methods after db connection is established
 @Repository("userDao")
 @Transactional
 public class UserDataAccessService implements UserDao {
@@ -25,13 +20,13 @@ public class UserDataAccessService implements UserDao {
     private EntityManager entityManager;
 
     @Override
-    public int insertPerson(User user) {
+    public int insertUser(User user) {
         entityManager.persist(user);
         return 1;
     }
 
     @Override
-    public User selectUserByEmail(@NotNull final String email, @NotNull final String password) {
+    public User selectUserByEmailAndPassword(@NotNull final String email, @NotNull final String password) {
         Session session = entityManager.unwrap(Session.class);
         Query query = session.createQuery("from user_core u where u.email = :email and u.password = :password");
         query.setParameter("email", email);
@@ -41,12 +36,12 @@ public class UserDataAccessService implements UserDao {
     }
 
     @Override
-    public User selectUserById(int userId) {
-        return entityManager.find(User.class, userId);
+    public User selectUserById(String uuid) {
+        return entityManager.find(User.class, uuid);
     }
 
     @Override
-    public int deleteUserById(int id) {
+    public int deleteUserById(String id) {
         User user = selectUserById(id);
         if(entityManager.contains(user)){
             entityManager.remove(user);
@@ -59,7 +54,7 @@ public class UserDataAccessService implements UserDao {
     }
 
     @Override
-    public int updateUserById(int id, User user) {
+    public int updateUserById(String id, User user) {
         return 0;
     }
 }

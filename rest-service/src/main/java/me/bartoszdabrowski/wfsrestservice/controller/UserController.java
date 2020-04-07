@@ -15,9 +15,15 @@ public class UserController {
     @Autowired
     UserDao userDao;
 
-    @RequestMapping(value = "/getById/{id}", method = RequestMethod.GET, consumes = "application/json")
+    @PostMapping(value = "/users/createUser", consumes = "application/json", produces = "application/json")
+    public int createUser(@RequestBody User user){
+        return userDao.insertUser(user);
+    }
+
+
+    @GetMapping(value = "/users/{UUID}", consumes = "application/json")
     @ResponseBody
-    public ResponseEntity<User> getById(@PathVariable("id") int id){
+    public ResponseEntity<User> getById(@PathVariable("UUID") String id){
         User user = null;
         HttpHeaders headers = new HttpHeaders();
         headers.add("Content-Type", "application/json");
@@ -25,14 +31,13 @@ public class UserController {
         try{
             user = userDao.selectUserById(id);
         } catch (Exception e){
-            System.out.println("User" + e.getMessage());
             return ResponseEntity.accepted().headers(headers).body(user);
         }
         return ResponseEntity.ok().headers(headers).body(user);
     }
 
     //TODO NULL POINTER CHECK IN CASE OF .selectUserByEmail return null throws into 500 error page
-    @RequestMapping(value = "/getByEmail/{email}/{password}")
+    @GetMapping(value = "/users/{email}/{password}", consumes = "application/json")
     @ResponseBody
     public ResponseEntity<User> getByEmail(@PathVariable("email") String email,
                                            @PathVariable("password") String password){
@@ -41,9 +46,8 @@ public class UserController {
         headers.add("Content-Type", "application/json");
         headers.add("Responded", "UseController");
         try{
-            user = userDao.selectUserByEmail(email, password);
+            user = userDao.selectUserByEmailAndPassword(email, password);
         } catch (Exception e){
-            System.out.println("User" + e.getMessage());
         }
 
         String pass = user.getPassword();
@@ -54,4 +58,6 @@ public class UserController {
             return ResponseEntity.status(404).headers(headers).body(user);
         }
     }
+
+
 }
