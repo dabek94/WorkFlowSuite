@@ -1,6 +1,7 @@
 package me.bartoszdabrowski.wfsrestservice.dao;
 
 import me.bartoszdabrowski.wfsrestservice.model.User;
+import me.bartoszdabrowski.wfsrestservice.model.UserDetails;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 
@@ -10,6 +11,7 @@ import java.util.UUID;
 public interface UserDao {
 
     int insertUser(User user);
+
 
     User selectUserById(String userUUID);
 

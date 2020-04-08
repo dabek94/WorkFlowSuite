@@ -6,7 +6,8 @@ import javax.persistence.*;
 public class User {
 
     @Id
-    @Column(name = "_email")
+    @Basic(optional = false)
+    @Column(name = "_email",unique=true, nullable = false)
     private String email;
 
     @Column(name = "_password")
@@ -14,6 +15,9 @@ public class User {
 
     @Column(name = "_uuid")
     private String UUID;
+
+    @OneToOne(mappedBy = "user", cascade = CascadeType.ALL)
+    private UserDetails userDetails;
 
     public String getEmail() {
         return email;
@@ -37,5 +41,13 @@ public class User {
 
     public void setUUID(String UUID) {
         this.UUID = UUID;
+    }
+
+    public UserDetails getUserDetails() {
+        return userDetails;
+    }
+
+    public void setUserDetails(UserDetails userDetails) {
+        this.userDetails = userDetails;
     }
 }

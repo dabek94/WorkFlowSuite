@@ -15,13 +15,13 @@ public class UserController {
     @Autowired
     UserDao userDao;
 
-    @PostMapping(value = "/users/createUser", consumes = "application/json", produces = "application/json")
+    @PostMapping(value = "/users", consumes = "application/json", produces = "application/json")
     public int createUser(@RequestBody User user){
-        return userDao.insertUser(user);
+            return userDao.insertUser(user);
     }
 
 
-    @GetMapping(value = "/users/{UUID}", consumes = "application/json")
+    @RequestMapping(value = "/users/{UUID}",method = RequestMethod.GET, consumes = "application/json")
     @ResponseBody
     public ResponseEntity<User> getById(@PathVariable("UUID") String id){
         User user = null;
@@ -37,7 +37,7 @@ public class UserController {
     }
 
     //TODO NULL POINTER CHECK IN CASE OF .selectUserByEmail return null throws into 500 error page
-    @GetMapping(value = "/users/{email}/{password}", consumes = "application/json")
+    @RequestMapping(value = "/users/{email}/{password}", consumes = "application/json")
     @ResponseBody
     public ResponseEntity<User> getByEmail(@PathVariable("email") String email,
                                            @PathVariable("password") String password){

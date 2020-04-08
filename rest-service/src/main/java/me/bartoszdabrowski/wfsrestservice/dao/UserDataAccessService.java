@@ -1,7 +1,8 @@
 package me.bartoszdabrowski.wfsrestservice.dao;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import me.bartoszdabrowski.wfsrestservice.model.User;
-import org.hibernate.Criteria;
+import me.bartoszdabrowski.wfsrestservice.model.UserDetails;
 import org.hibernate.Session;
 import org.springframework.stereotype.Repository;
 
@@ -30,14 +31,15 @@ public class UserDataAccessService implements UserDao {
         Session session = entityManager.unwrap(Session.class);
         Query query = session.createQuery("from user_core u where u.email = :email and u.password = :password");
         query.setParameter("email", email);
+        //change this to email
         query.setParameter("password", password);
         List list = query.getResultList();
         return (User) list.get(0);
     }
 
     @Override
-    public User selectUserById(String uuid) {
-        return entityManager.find(User.class, uuid);
+    public User selectUserById(String email) {
+        return entityManager.find(User.class, email);
     }
 
     @Override
@@ -58,3 +60,5 @@ public class UserDataAccessService implements UserDao {
         return 0;
     }
 }
+
+
