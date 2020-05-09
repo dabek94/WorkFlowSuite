@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#008577</color>
+    <color name="colorPrimaryDark">#00574B</color>
+    <color name="colorAccent">#D81B60</color>
+
+    <!-- Kolory Angeliki na przyciski-->
+    <color name="AngelikaCenterColor">#ed34e3</color>
+    <color name="AngelikaTopColor">#f073e9</color>
+    <color name="AngelikaBottomColor">#fa11ed</color>
+
+    <!-- Kolory zielone -->
+    <color name="ZielonyCenterColor">#1CAB0C</color>
+    <color name="ZielonyTopColor">#0F7000</color>
+    <color name="ZielonyBottomColor">#53FF1F</color>
+
+    <!-- Default context background -->
+    <color name="DefaultCenterColor">#fc3862</color>
+    <color name="DefaultTopColor">#f26b4a</color>
+    <color name="DefaultBottomColor">#ed328f</color>
+
+</resources>

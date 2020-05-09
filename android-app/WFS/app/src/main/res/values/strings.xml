@@ -1,0 +1,27 @@
+<resources>
+    <string name="app_name">WFS</string>
+    <!-- Hints -->
+    <string name="email_hint">Enter Email</string>
+    <string name="password_hint">Password</string>
+    <string name="reenter_password_hint">Re-Enter Password</string>
+    <string name="lastName_hint">last name</string>
+    <string name="address_hint">address</string>
+    <string name="city_hint">city</string>
+
+    <!-- Index -->
+    <string name="facebook_singIn">Sign in with Facebook</string>
+    <string name="google_acc_signIn">Sign in with Google Account</string>
+    <string name="sign_up">Sign up</string>
+    <string name="slogan">Managing your business easily </string>
+    <string name="signIn_question">Already have an account? Sign in.</string>
+
+    <!-- Create account -->
+    <string name="create_account_description">CREATE YOUR LOGIN</string>
+    <string name="accept_tos">Accept terms of use</string>
+    <string name="cancel_registration">Cancel</string>
+    <!-- Sign in -->
+    <string name="sign_in_description">SIGN IN</string>
+    <string name="sign_in_button">GET STARTED</string>
+    <string name="forgot_password">FORGOT PASSWORD</string>
+    <string name="remember_password">Remember password</string>
+</resources>
