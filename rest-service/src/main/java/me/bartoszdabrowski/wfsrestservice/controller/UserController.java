@@ -9,6 +9,11 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
+import javax.annotation.Resource;
+import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
+
 @Controller
 public class UserController {
 
@@ -16,48 +21,64 @@ public class UserController {
     UserDao userDao;
 
     @PostMapping(value = "/users", consumes = "application/json", produces = "application/json")
-    public int createUser(@RequestBody User user){
+    public int createUser(@RequestBody User user) {
             return userDao.insertUser(user);
+
     }
 
-
-    @RequestMapping(value = "/users/{UUID}",method = RequestMethod.GET, consumes = "application/json")
+    @GetMapping(value = "/users/{email}")
     @ResponseBody
-    public ResponseEntity<User> getById(@PathVariable("UUID") String id){
+    public ResponseEntity<User> getById(@PathVariable("email") String email){
         User user = null;
         HttpHeaders headers = new HttpHeaders();
         headers.add("Content-Type", "application/json");
         headers.add("Responded", "UseController");
         try{
-            user = userDao.selectUserById(id);
+            user = userDao.selectUser(email);
         } catch (Exception e){
             return ResponseEntity.accepted().headers(headers).body(user);
         }
         return ResponseEntity.ok().headers(headers).body(user);
     }
 
-    //TODO NULL POINTER CHECK IN CASE OF .selectUserByEmail return null throws into 500 error page
-    @RequestMapping(value = "/users/{email}/{password}", consumes = "application/json")
+    //Is this good path clean code wise?
+    @PostMapping(value = "/users/{email}/{password}")
     @ResponseBody
-    public ResponseEntity<User> getByEmail(@PathVariable("email") String email,
-                                           @PathVariable("password") String password){
+    public ResponseEntity<User> getUser(@PathVariable("email") String email,
+                                        @PathVariable("password") String password){
         User user = null;
         HttpHeaders headers = new HttpHeaders();
         headers.add("Content-Type", "application/json");
         headers.add("Responded", "UseController");
         try{
-            user = userDao.selectUserByEmailAndPassword(email, password);
+            user = userDao.selectUser(email);
+            if(user.getPassword().equals(password)){
+                return ResponseEntity.ok().headers(headers).body(user);
+            }
         } catch (Exception e){
+            return ResponseEntity.accepted().headers(headers).body(user);
         }
-
-        String pass = user.getPassword();
-        if(pass.equals(password)){
-            return ResponseEntity.ok().headers(headers).body(user);
-        }
-        else{
-            return ResponseEntity.status(404).headers(headers).body(user);
-        }
+        return ResponseEntity.badRequest().headers(headers).body(null);
     }
+
+    //getUserByCompanyId : List<Users>
+   /* @GetMapping(value = "/users/{companyId}")
+    @ResponseBody
+    public ResponseEntity<List<User>> getUsersByCompany(@PathVariable("companyId") String companyId){
+        List<User> users = new ArrayList<>();
+        HttpHeaders headers = new HttpHeaders();
+        headers.add("Content-Type", "application/json");
+        headers.add("Responded", "UseController");
+
+
+    }*/
+    //updateUser : boolean
+
+    //deleteUser : boolean
+
+
+
+
 
 
 }

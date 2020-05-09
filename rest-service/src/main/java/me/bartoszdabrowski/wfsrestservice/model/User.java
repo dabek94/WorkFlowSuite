@@ -13,10 +13,8 @@ public class User {
     @Column(name = "_password")
     private String password;
 
-    @Column(name = "_uuid")
-    private String UUID;
-
-    @OneToOne(mappedBy = "user", cascade = CascadeType.ALL)
+    @JoinColumn(name = "_email", unique = true)
+    @OneToOne(cascade = CascadeType.ALL)
     private UserDetails userDetails;
 
     public String getEmail() {
@@ -33,14 +31,6 @@ public class User {
 
     public void setPassword(String password) {
         this.password = password;
-    }
-
-    public String getUUID() {
-        return UUID;
-    }
-
-    public void setUUID(String UUID) {
-        this.UUID = UUID;
     }
 
     public UserDetails getUserDetails() {

@@ -6,27 +6,23 @@ import javax.persistence.*;
 public class UserDetails{
 
     @Id
-    @Column(name = "email")
+    @Column(name = "_email")
     private String email;
 
-    @Column(name = "firstName")
+    @Column(name = "_firstName")
     private String firstName;
 
-    @Column(name = "lastName")
+    @Column(name = "_lastName")
     private String lastName;
 
-    @Column(name = "address")
+    @Column(name = "_address")
     private String address;
 
-    @Column(name = "city")
+    @Column(name = "_city")
     private String city;
 
-    @Column(name = "isEmployer")
-    private boolean isEmployer;
-
-    @OneToOne(optional = false)
-    @JoinColumn(name = "email", nullable = false)
-    private User user;
+    @Column(name = "userType")
+    private String userType;
 
     public String getEmail() {
         return email;
@@ -68,19 +64,11 @@ public class UserDetails{
         this.city = city;
     }
 
-    public boolean isEmployer() {
-        return isEmployer;
+    public String getUserType() {
+        return userType;
     }
 
-    public void setEmployer(boolean employer) {
-        isEmployer = employer;
-    }
-
-    public User getUser() {
-        return user;
-    }
-
-    public void setUser(User user) {
-        this.user = user;
+    public void setUserType(String userType) {
+        this.userType = userType;
     }
 }

@@ -27,24 +27,31 @@ public class UserDataAccessService implements UserDao {
     }
 
     @Override
-    public User selectUserByEmailAndPassword(@NotNull final String email, @NotNull final String password) {
+    public User selectUser(String email) {
+        return entityManager.find(User.class, email);
+    }
+
+    @Override
+    public User selectUser(@NotNull final String email, @NotNull final String password) {
         Session session = entityManager.unwrap(Session.class);
         Query query = session.createQuery("from user_core u where u.email = :email and u.password = :password");
         query.setParameter("email", email);
-        //change this to email
         query.setParameter("password", password);
         List list = query.getResultList();
         return (User) list.get(0);
     }
 
     @Override
-    public User selectUserById(String email) {
-        return entityManager.find(User.class, email);
+    public List<User> selectUsers(String companyId) {
+        Session session = entityManager.unwrap(Session.class);
+
+
+        return null;
     }
 
     @Override
-    public int deleteUserById(String id) {
-        User user = selectUserById(id);
+    public int deleteUserById(String email) {
+        User user = selectUser(email);
         if(entityManager.contains(user)){
             entityManager.remove(user);
             return 0;
