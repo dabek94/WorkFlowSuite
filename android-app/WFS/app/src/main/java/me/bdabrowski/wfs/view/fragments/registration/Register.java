@@ -22,10 +22,8 @@ import me.bdabrowski.wfs.viewmodel.UserViewModel;
 
 public class Register extends Fragment {
 
-    private EditText mNewUserEmail;
-    private EditText mNewUserPassword;
-    private EditText mNewUserRePassword;
-    private CheckBox mToSAgreenment;
+    private EditText mNewUserEmail, mNewUserPassword, mNewUserRePassword;
+    private CheckBox mToSAgreement;
     private ProgressBar mLoadingBar;
     private TextView mCancelRegistration;
     private Button mSubmitUserData;
@@ -44,12 +42,11 @@ public class Register extends Fragment {
     }
 
     private void initializeComponents(View view) {
-
         //form
         mNewUserEmail = view.findViewById(R.id.newUserEmail);
         mNewUserPassword = view.findViewById(R.id.newUserPassword);
         mNewUserRePassword = view.findViewById(R.id.newUserPasswordReentered);
-        mToSAgreenment = view.findViewById(R.id.ToSCheck);
+        mToSAgreement = view.findViewById(R.id.ToSCheck);
         mLoadingBar = view.findViewById(R.id.loading_bar);
 
         //action buttons
@@ -60,27 +57,25 @@ public class Register extends Fragment {
 
         mSubmitUserData = view.findViewById(R.id.newUserSubmit);
         mSubmitUserData.setOnClickListener(v -> {
-            if (isPasswordMatching() && isToSAccepted()) {
+            if (isFormConditionsMet()) {
                 User user = createUser();
                 FragmentNavigator.get().changeView(this, UserPersonalInfo.newInstance(user));
             }
         });
     }
 
-    private boolean isToSAccepted() {
-        if (!mToSAgreenment.isChecked()) {
-            Toast.makeText(getContext(), "Check ToS", Toast.LENGTH_LONG).show();
+    private boolean isFormConditionsMet(){
+        if (!mToSAgreement.isChecked()) {
+            Toast.makeText(getContext(), "Accept Terms of Service", Toast.LENGTH_LONG).show();
             return false;
         }
-        return true;
-    }
-
-    private boolean isPasswordMatching() {
-        if (!mNewUserPassword.getText().toString().equals(mNewUserRePassword.getText().toString())) {
-            Toast.makeText(getContext(), "Password doesnt match", Toast.LENGTH_LONG).show();
+        else if (!mNewUserPassword.getText().toString().equals(mNewUserRePassword.getText().toString())) {
+            Toast.makeText(getContext(), "Password doesn't match", Toast.LENGTH_LONG).show();
             return false;
         }
-        return true;
+        else {
+            return true;
+        }
     }
 
     private User createUser() {

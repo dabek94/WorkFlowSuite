@@ -14,7 +14,7 @@ public class RESTConsts {
     public static final String UPDATE = "UPDATE";
     public static final String DELETE = "DELETE";
 
-    public static final String BASE_URL = "http://192.168.0.171:9090";
+    public static final String BASE_URL = "http://192.168.0.136:9090";
     //Users Path
     public class Users {
         public static final String PATH = "/users";

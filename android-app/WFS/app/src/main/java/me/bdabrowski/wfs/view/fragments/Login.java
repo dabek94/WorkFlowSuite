@@ -28,8 +28,6 @@ public class Login extends Fragment {
                              Bundle savedInstanceState) {
 
         userViewModel = new ViewModelProvider(getActivity()).get(UserViewModel.class);
-        userViewModel.init();
-
         View loginView = inflater.inflate(R.layout.login_fragment, container, false);
         mUserName = loginView.findViewById(R.id.userEmail);
         mUserPassword = loginView.findViewById(R.id.userPassword);
