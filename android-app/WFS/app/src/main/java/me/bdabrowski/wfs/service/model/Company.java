@@ -4,11 +4,27 @@ import java.util.UUID;
 
 public class Company {
 
-    private UUID companyUUID;
-    private User owner;
-    private String companyName;
+    private int id;
+    private String name;
 
     public Company() {
 
+
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
 }

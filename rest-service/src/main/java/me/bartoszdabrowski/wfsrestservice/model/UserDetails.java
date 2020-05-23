@@ -15,12 +15,6 @@ public class UserDetails{
     @Column(name = "_lastName")
     private String lastName;
 
-    @Column(name = "_address")
-    private String address;
-
-    @Column(name = "_city")
-    private String city;
-
     @Column(name = "userType")
     private String userType;
 
@@ -46,22 +40,6 @@ public class UserDetails{
 
     public void setLastName(String lastName) {
         this.lastName = lastName;
-    }
-
-    public String getAddress() {
-        return address;
-    }
-
-    public void setAddress(String address) {
-        this.address = address;
-    }
-
-    public String getCity() {
-        return city;
-    }
-
-    public void setCity(String city) {
-        this.city = city;
     }
 
     public String getUserType() {

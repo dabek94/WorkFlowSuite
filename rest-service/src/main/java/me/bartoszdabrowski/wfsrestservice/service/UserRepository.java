@@ -1,8 +1,6 @@
-package me.bartoszdabrowski.wfsrestservice.dao;
+package me.bartoszdabrowski.wfsrestservice.service;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import me.bartoszdabrowski.wfsrestservice.model.User;
-import me.bartoszdabrowski.wfsrestservice.model.UserDetails;
 import org.hibernate.Session;
 import org.springframework.stereotype.Repository;
 
@@ -15,7 +13,7 @@ import java.util.List;
 
 @Repository("userDao")
 @Transactional
-public class UserDataAccessService implements UserDao {
+public class UserRepository implements UserAPI {
 
     @PersistenceContext
     private EntityManager entityManager;
@@ -42,28 +40,27 @@ public class UserDataAccessService implements UserDao {
     }
 
     @Override
-    public List<User> selectUsers(String companyId) {
+    public List<User> selectUsers(int companyId) {
         Session session = entityManager.unwrap(Session.class);
-
 
         return null;
     }
 
     @Override
-    public int deleteUserById(String email) {
-        User user = selectUser(email);
-        if(entityManager.contains(user)){
-            entityManager.remove(user);
+    public int deleteUser(User user) {
+        User userForRemoval = selectUser(user.getEmail());
+        if(entityManager.contains(userForRemoval)){
+            entityManager.remove(userForRemoval);
             return 0;
         }
         else {
-            entityManager.remove(entityManager.merge(user));
+            entityManager.remove(entityManager.merge(userForRemoval));
             return 1;
         }
     }
 
     @Override
-    public int updateUserById(String id, User user) {
+    public int updateUser(User user) {
         return 0;
     }
 }

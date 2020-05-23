@@ -8,6 +8,7 @@ public class User implements Serializable {
 
     private String email;
     private String password;
+
     private UserDetails userDetails;
 
     public User(){
@@ -43,14 +44,15 @@ public class User implements Serializable {
         this.userDetails = userDetails;
     }
 
+    //User_Details
     public static class UserDetails {
+        private String email;
         private String firstName;
         private String lastName;
         private String address;
         private String city;
         @SerializedName("userType")
         private String position;
-        private String email;
 
         public String getEmail() {
             return email;
@@ -100,4 +102,5 @@ public class User implements Serializable {
             this.position = position;
         }
     }
+
 }

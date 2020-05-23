@@ -1,6 +1,6 @@
 package me.bartoszdabrowski.wfsrestservice.controller;
 
-import me.bartoszdabrowski.wfsrestservice.dao.UserDao;
+import me.bartoszdabrowski.wfsrestservice.service.UserAPI;
 import me.bartoszdabrowski.wfsrestservice.model.User;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,20 +9,15 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
-import javax.annotation.Resource;
-import java.sql.SQLException;
-import java.util.ArrayList;
-import java.util.List;
-
 @Controller
 public class UserController {
 
     @Autowired
-    UserDao userDao;
+    UserAPI userAPI;
 
     @PostMapping(value = "/users", consumes = "application/json", produces = "application/json")
     public int createUser(@RequestBody User user) {
-            return userDao.insertUser(user);
+            return userAPI.insertUser(user);
 
     }
 
@@ -34,7 +29,7 @@ public class UserController {
         headers.add("Content-Type", "application/json");
         headers.add("Responded", "UseController");
         try{
-            user = userDao.selectUser(email);
+            user = userAPI.selectUser(email);
         } catch (Exception e){
             return ResponseEntity.accepted().headers(headers).body(user);
         }
@@ -51,8 +46,8 @@ public class UserController {
         headers.add("Content-Type", "application/json");
         headers.add("Responded", "UseController");
         try{
-            user = userDao.selectUser(email);
-            if(user.getPassword().equals(password)){
+            user = userAPI.selectUser(email);
+            if(user.getUserAuthentication().getPassword().equals(password)){
                 return ResponseEntity.ok().headers(headers).body(user);
             }
         } catch (Exception e){

@@ -54,6 +54,10 @@ CREATE TABLE `user_details` (
   `userType` varchar(32) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
+Create Table '_Company' (
+  'id' int  DEFAULT NOT NULL,
+  'name' varchar(255) DEFAULT NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 --
 -- Dumping data for table `user_details`
 --
@@ -72,6 +76,8 @@ ALTER TABLE `user_core`
   ADD PRIMARY KEY (`_email`);
 COMMIT;
 
+ALTER TABLE 'commpany'
+ ADD PRIMARY KEY ('id') increment;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
