@@ -9,7 +9,12 @@ public class User implements Serializable {
     private String email;
     private String password;
 
-    private UserDetails userDetails;
+    private String firstName;
+    private String lastName;
+    private String userType;
+    private Long companyId;
+
+    private Address address;
 
     public User(){
 
@@ -36,71 +41,43 @@ public class User implements Serializable {
         this.password = password;
     }
 
-    public UserDetails getUserDetails() {
-        return userDetails;
+    public String getFirstName() {
+        return firstName;
     }
 
-    public void setUserDetails(UserDetails userDetails) {
-        this.userDetails = userDetails;
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
     }
 
-    //User_Details
-    public static class UserDetails {
-        private String email;
-        private String firstName;
-        private String lastName;
-        private String address;
-        private String city;
-        @SerializedName("userType")
-        private String position;
-
-        public String getEmail() {
-            return email;
-        }
-
-        public void setEmail(String email) {
-            this.email = email;
-        }
-
-        public String getFirstName() {
-            return firstName;
-        }
-
-        public void setFirstName(String firstName) {
-            this.firstName = firstName;
-        }
-
-        public String getLastName() {
-            return lastName;
-        }
-
-        public void setLastName(String lastName) {
-            this.lastName = lastName;
-        }
-
-        public String getAddress() {
-            return address;
-        }
-
-        public void setAddress(String address) {
-            this.address = address;
-        }
-
-        public String getCity() {
-            return city;
-        }
-
-        public void setCity(String city) {
-            this.city = city;
-        }
-
-        public String getPosition() {
-            return position;
-        }
-
-        public void setPosition(String position) {
-            this.position = position;
-        }
+    public String getLastName() {
+        return lastName;
     }
 
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
+    }
+
+    public String getUserType() {
+        return userType;
+    }
+
+    public void setUserType(String userType) {
+        this.userType = userType;
+    }
+
+    public Long getCompanyId() {
+        return companyId;
+    }
+
+    public void setCompanyId(Long companyId) {
+        this.companyId = companyId;
+    }
+
+    public Address getAddress() {
+        return address;
+    }
+
+    public void setAddress(Address address) {
+        this.address = address;
+    }
 }

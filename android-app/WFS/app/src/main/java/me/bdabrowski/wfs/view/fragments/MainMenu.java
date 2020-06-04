@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageButton;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -19,7 +20,7 @@ public class MainMenu extends Fragment {
     private UserViewModel userViewModel;
 
     private TextView mHeaderUserName;
-
+    private ImageButton mImageButton;
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater,
@@ -31,7 +32,7 @@ public class MainMenu extends Fragment {
 
         mHeaderUserName = view.findViewById(R.id.header_userName);
 
-        String userName = userViewModel.getUser().getValue().getUserDetails().getFirstName();
+        String userName = userViewModel.getUser().getValue().getFirstName();
         mHeaderUserName.setText("Welcome " + userName);
 
 

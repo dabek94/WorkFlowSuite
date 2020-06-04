@@ -14,6 +14,7 @@ import java.util.Optional;
 
 @RestController
 @RequestMapping("/users")
+@CrossOrigin
 public class UserController {
 
     @Autowired
@@ -68,6 +69,24 @@ public class UserController {
             _user.setPassword(user.getPassword());
             userRepository.save(_user);
             return new ResponseEntity<>(_user, HttpStatus.OK);
+        } else {
+            return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
+        }
+    }
+    @PutMapping("/update/address/{id}")
+    public ResponseEntity<Address> updateAddress(@RequestBody Address address,
+                                                 @PathVariable("id") Long id){
+        Optional<User> existingUser = userRepository.findById(id);
+        if(existingUser.isPresent()){
+            User _user = existingUser.get();
+            Address _address = _user.getAddress();
+            _address.setCountry(address.getCountry());
+            _address.setState(address.getState());
+            _address.setStreet(address.getStreet());
+            _address.setZipCode(address.getZipCode());
+            _user.setAddress(_address);
+            userRepository.save(_user);
+            return new ResponseEntity<>(_user.getAddress(), HttpStatus.OK);
         } else {
             return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
         }

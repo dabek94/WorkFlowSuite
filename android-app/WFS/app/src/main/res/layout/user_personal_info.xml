@@ -82,7 +82,7 @@
         android:layout_marginHorizontal="40dp"
         android:textColor="#ffffff"
         android:textColorHint="#dddddd"
-        android:hint="@string/address_hint"
+        android:hint="@string/city_hint"
         android:inputType="textEmailAddress"
         android:textAlignment="textStart"
         app:layout_constraintEnd_toEndOf="parent"

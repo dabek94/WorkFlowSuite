@@ -47,8 +47,9 @@ public class AccountType extends Fragment {
 
         View view = inflater.inflate(R.layout.first_account_setup_fragment, container, false);
         mEmployer = view.findViewById(R.id.registerAsEmployer);
+        System.out.println(newUser.getEmail());
         mEmployer.setOnClickListener(v -> {
-            newUser.getUserDetails().setPosition("unemployeed");
+            newUser.setUserType("unemployeed");
 
             userViewModel.addNewUser(newUser).observe(getActivity(), user -> {
                 System.out.println(newUser);
@@ -58,10 +59,10 @@ public class AccountType extends Fragment {
 
         mEmployee = view.findViewById(R.id.registerAsEmployee);
         mEmployee.setOnClickListener(v ->{
-            newUser.getUserDetails().setPosition("owner");
+            newUser.setUserType("owner");
 
             String json = new Gson().toJson(newUser);
-            System.out.println(newUser);
+            System.out.println(json);
             userViewModel.addNewUser(newUser).observe(getActivity(), user -> {
                 FragmentNavigator.get().changeView(this, new MainMenu());
             });

@@ -28,8 +28,7 @@ public class UserViewModel extends ViewModel {
     //Get user from rest service
     public LiveData<User> getUser(String email, String password) {
         mApplicationUser = userRepository.getUser(email, password);
-        return mApplicationUser;
-    }
+        return mApplicationUser;    }
 
     public LiveData<User> addNewUser(User user) {
         mApplicationUser = userRepository.createUser(user);

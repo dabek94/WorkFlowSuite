@@ -1,9 +1,11 @@
 package me.bdabrowski.wfs.restservice.repository;
 
+import me.bdabrowski.wfs.restservice.model.Address;
 import me.bdabrowski.wfs.restservice.model.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 
+import javax.swing.text.html.Option;
 import java.util.List;
 import java.util.Optional;
 
@@ -14,4 +16,5 @@ public interface UserRepository extends JpaRepository<User, Long> {
             "from User u " +
             "where u.companyId=?1")
     Optional<List<User>> getUsersByCompanyId(Long companyId);
+
 }

@@ -1,0 +1,19 @@
+# /user/
+# Get user by company id
+GET {{host-url}}//users/1
+
+#Create new user
+###
+POST {{host-url}}/users
+Content-Type: application/json
+
+{
+  "email": "testaasdsd@pl",
+  "password": "test",
+  "firstName": "test124",
+  "lastName": "test42",
+  "userType": "asdasdasd"
+}
+
+###
+

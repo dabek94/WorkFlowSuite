@@ -10,13 +10,14 @@ import android.widget.EditText;
 import androidx.fragment.app.Fragment;
 
 import me.bdabrowski.wfs.R;
+import me.bdabrowski.wfs.service.model.Address;
 import me.bdabrowski.wfs.service.model.User;
 import me.bdabrowski.wfs.view.utils.FragmentNavigator;
 
 public class UserPersonalInfo extends Fragment {
 
 
-    private EditText mFirstName, mLastName, mAddress, mCity;
+    private EditText mFirstName, mLastName, mStreet, mCity;
     private Button mSubmitButton;
 
     private static final String USER_PERSONAL_INFO_ARG
@@ -36,14 +37,14 @@ public class UserPersonalInfo extends Fragment {
 
         initComponents(view);
         mSubmitButton.setOnClickListener(v -> {
-            User.UserDetails userDetails = new User.UserDetails();
 
-            userDetails.setFirstName(mFirstName.getText().toString());
-            userDetails.setLastName(mLastName.getText().toString());
-            userDetails.setAddress(mAddress.getText().toString());
-            userDetails.setCity(mCity.getText().toString());
-            userDetails.setEmail(user.getEmail());
-            user.setUserDetails(userDetails);
+            user.setFirstName(mFirstName.getText().toString());
+            user.setLastName(mLastName.getText().toString());
+
+            Address _address = new Address();
+            _address.setStreet(mStreet.getText().toString());
+            _address.setCity(mCity.getText().toString());
+            user.setAddress(_address);
             FragmentNavigator.get().changeViewBackStack(this, AccountType.newInstance(user));
         });
         return view;
@@ -52,7 +53,7 @@ public class UserPersonalInfo extends Fragment {
     private void initComponents(View view){
         mFirstName = view.findViewById(R.id.newUserFirstName);
         mLastName = view.findViewById(R.id.newUserLastName);
-        mAddress = view.findViewById(R.id.newUserAddress);
+        mStreet = view.findViewById(R.id.newUserAddress);
         mCity = view.findViewById(R.id.newUserCity);
         mSubmitButton = view.findViewById(R.id.newUserSubmit);
     }

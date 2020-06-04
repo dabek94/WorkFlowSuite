@@ -6,7 +6,7 @@
     <string name="reenter_password_hint">Re-Enter Password</string>
     <string name="firstName_hint">First name</string>
     <string name="lastName_hint">Last name</string>
-    <string name="address_hint">Address</string>
+    <string name="street_hint">Street</string>
     <string name="city_hint">City</string>
 
     <!-- Index -->
