@@ -12,6 +12,7 @@ import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 
 import me.bdabrowski.wfs.R;
+import me.bdabrowski.wfs.view.fragments.menu.employee.EmployeeMainMenu;
 import me.bdabrowski.wfs.view.utils.FragmentNavigator;
 import me.bdabrowski.wfs.viewmodel.UserViewModel;
 
@@ -44,7 +45,7 @@ public class Login extends Fragment {
                     return;
                 } else if (login.equals(user.getEmail()) && password.equals(user.getPassword())) {
 
-                    FragmentNavigator.get().changeView(this, new MainMenu());
+                    FragmentNavigator.get().changeView(this, new EmployeeMainMenu());
 
                     Toast.makeText(getContext(), "OK", Toast.LENGTH_LONG).show();
                     return;

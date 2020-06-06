@@ -3,12 +3,13 @@ package me.bdabrowski.wfs.service.model;
 import com.google.gson.annotations.SerializedName;
 
 import java.io.Serializable;
+import java.lang.reflect.Field;
+import java.util.stream.Stream;
 
 public class User implements Serializable {
 
     private String email;
     private String password;
-
     private String firstName;
     private String lastName;
     private String userType;
@@ -79,5 +80,15 @@ public class User implements Serializable {
 
     public void setAddress(Address address) {
         this.address = address;
+    }
+
+    public boolean isUserEmployed(){
+        if(companyId != null){
+            return true;
+        }
+        return false;
+    }
+    public boolean isUserAddressSetUp(){
+        return this.address.isAddressIncomplete();
     }
 }

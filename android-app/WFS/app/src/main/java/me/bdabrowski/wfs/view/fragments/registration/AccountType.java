@@ -16,7 +16,8 @@ import com.google.gson.Gson;
 
 import me.bdabrowski.wfs.R;
 import me.bdabrowski.wfs.service.model.User;
-import me.bdabrowski.wfs.view.fragments.MainMenu;
+import me.bdabrowski.wfs.view.fragments.menu.employee.EmployeeMainMenu;
+import me.bdabrowski.wfs.view.fragments.menu.employee.NewEmployeeWelcome;
 import me.bdabrowski.wfs.view.utils.FragmentNavigator;
 import me.bdabrowski.wfs.viewmodel.UserViewModel;
 
@@ -53,7 +54,7 @@ public class AccountType extends Fragment {
 
             userViewModel.addNewUser(newUser).observe(getActivity(), user -> {
                 System.out.println(newUser);
-                FragmentNavigator.get().changeView(this, new MainMenu());
+                FragmentNavigator.get().changeView(this, new NewEmployeeWelcome());
             });
         });
 
@@ -64,7 +65,7 @@ public class AccountType extends Fragment {
             String json = new Gson().toJson(newUser);
             System.out.println(json);
             userViewModel.addNewUser(newUser).observe(getActivity(), user -> {
-                FragmentNavigator.get().changeView(this, new MainMenu());
+                FragmentNavigator.get().changeView(this, new EmployeeMainMenu());
             });
         });
 

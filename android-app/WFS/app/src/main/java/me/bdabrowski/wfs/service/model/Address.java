@@ -1,5 +1,8 @@
 package me.bdabrowski.wfs.service.model;
 
+import java.util.Objects;
+import java.util.stream.Stream;
+
 public class Address {
     private String street;
     private String state;
@@ -45,5 +48,9 @@ public class Address {
 
     public void setCity(String city) {
         this.city = city;
+    }
+
+    public boolean isAddressIncomplete(){
+        return Stream.of(street, city, zipCode, city).allMatch(Objects::isNull);
     }
 }

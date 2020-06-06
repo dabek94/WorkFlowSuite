@@ -25,4 +25,14 @@
     <string name="sign_in_button">GET STARTED</string>
     <string name="forgot_password">FORGOT PASSWORD</string>
     <string name="remember_password">Remember password</string>
+
+    <!-- Profile View settings -->
+    <string name="profile_user_name">%s %s</string>
+
+    <!-- New user -->
+    <string name="welcome_text">Welcome %s</string>
+    <string name="welcome_description">
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt
+        viverra. Tincidunt lobortis feugiat vivamus at augue eget. </string>
+    <string name="job_field">Choose in which field you seek job</string>
 </resources>

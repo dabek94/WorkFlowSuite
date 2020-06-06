@@ -1,41 +1,39 @@
-package me.bdabrowski.wfs.view.fragments;
+package me.bdabrowski.wfs.view.fragments.account;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageButton;
-import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.databinding.DataBindingUtil;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
+
 import me.bdabrowski.wfs.R;
-import me.bdabrowski.wfs.view.utils.FragmentNavigator;
+import me.bdabrowski.wfs.databinding.AccountSettingsBinding;
 import me.bdabrowski.wfs.viewmodel.UserViewModel;
 
-public class MainMenu extends Fragment {
+public class AccountSettings extends Fragment {
 
-    private UserViewModel userViewModel;
+    AccountSettingsBinding accountSettingsBinding;
+    UserViewModel userViewModel;
 
-    private TextView mHeaderUserName;
-    private ImageButton mImageButton;
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater,
                              @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.menu, container, false);
 
         userViewModel = new ViewModelProvider(getActivity()).get(UserViewModel.class);
-        mHeaderUserName = view.findViewById(R.id.header_userName);
+        accountSettingsBinding = DataBindingUtil.inflate(
+                                                 inflater, R.layout.account_settings,
+                                                 container, false);
+        accountSettingsBinding.setUser(userViewModel.getUser().getValue());
 
-        String userName = userViewModel.getUser().getValue().getEmail();
-        mHeaderUserName.setText("Welcome " + userName);
-
-
+        View view = accountSettingsBinding.getRoot();
         return view;
-    }
 
+    }
 }

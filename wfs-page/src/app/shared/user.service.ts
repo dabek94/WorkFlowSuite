@@ -9,7 +9,7 @@ import {NewUser} from '../sign-up/sign-up.component';
 })
 export class UserService {
 
-  private BASE_URL = 'http://localhost:8080/users/';
+  private BASE_URL = 'http://192.168.0.136:8080/users/';
 
   constructor(private http: HttpClient) { }
 
