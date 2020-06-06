@@ -29,13 +29,13 @@ public class MainMenu extends Fragment {
         View view = inflater.inflate(R.layout.menu, container, false);
 
         userViewModel = new ViewModelProvider(getActivity()).get(UserViewModel.class);
-
         mHeaderUserName = view.findViewById(R.id.header_userName);
 
-        String userName = userViewModel.getUser().getValue().getFirstName();
+        String userName = userViewModel.getUser().getValue().getEmail();
         mHeaderUserName.setText("Welcome " + userName);
 
 
         return view;
     }
+
 }

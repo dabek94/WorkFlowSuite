@@ -38,4 +38,5 @@ public class UserViewModel extends ViewModel {
     public MutableLiveData<Boolean> getIsUpdating() {
         return mIsUpdating;
     }
+
 }

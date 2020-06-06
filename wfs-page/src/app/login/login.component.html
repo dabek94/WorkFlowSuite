@@ -1,7 +1,6 @@
 <div class="container col-2 pt-5">
-
-  <h2 class="row justify-content-center text-primary">Register</h2>
-  <form name="form" #f="ngForm" (submit)="f.form.valid && createUser()">
+  <h2 class="row justify-content-center text-primary">Login</h2>
+  <form name="form" #f="ngForm" (submit)="f.form.valid && login(user.email, user.password)">
     <!-- email -->
     <div class="form-group">
       <label for="email">Email address:</label>
@@ -10,7 +9,7 @@
              name="email"
              class="form-control"
              placeholder="Enter email"
-             [(ngModel)]="model.email"
+             [(ngModel)]="user.email"
              #email="ngModel"
              [ngClass]="{'is-invalid': f.submitted && email.invalid }"
              required email/>
@@ -27,7 +26,7 @@
              name="password"
              class="form-control"
              placeholder="Enter password"
-             [(ngModel)]="model.password"
+             [(ngModel)]="user.password"
              #password="ngModel"
              [ngClass]="{'is-invalid': f.submitted && password.invalid}"
              required>
@@ -41,4 +40,5 @@
       </button>
     </div>
   </form>
+
 </div>

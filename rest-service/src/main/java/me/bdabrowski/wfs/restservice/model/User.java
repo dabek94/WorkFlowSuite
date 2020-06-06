@@ -23,16 +23,16 @@ public class User {
     private String password;
 
     @Column()
-    private String firstName = "";
+    private String firstName = "null";
 
     @Column()
-    private String lastName = "";
+    private String lastName = "null";
 
     @Column()
-    private String userType = "";
+    private String userType = "null";
 
     @Column()
-    private Long companyId = null;
+    private Long companyId = 0L;
 
     @OneToOne(cascade = CascadeType.ALL)
     Address address = new Address();

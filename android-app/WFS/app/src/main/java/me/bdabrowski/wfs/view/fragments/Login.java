@@ -43,7 +43,9 @@ public class Login extends Fragment {
                     Toast.makeText(getContext(), "Check your internet connection", Toast.LENGTH_LONG).show();
                     return;
                 } else if (login.equals(user.getEmail()) && password.equals(user.getPassword())) {
+
                     FragmentNavigator.get().changeView(this, new MainMenu());
+
                     Toast.makeText(getContext(), "OK", Toast.LENGTH_LONG).show();
                     return;
                 }

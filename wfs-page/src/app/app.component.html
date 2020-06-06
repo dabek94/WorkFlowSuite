@@ -1,4 +1,13 @@
-<div class="container-fluid span" >
-  <app-navigation></app-navigation>
+<div class="container-fluid">
+  <!-- HEADER -->
+  <div *ngIf="!isLoggedIn()">
+    <app-navigation></app-navigation>
+  </div>
+  <div *ngIf="isLoggedIn()">
+    <div *ngIf="isEmployee()">
+      <app-navigation-signed></app-navigation-signed>
+    </div>
+  </div>
+  <!-- Body -->
   <router-outlet></router-outlet>
 </div>

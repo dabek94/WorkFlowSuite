@@ -44,8 +44,5 @@ public abstract class PrimaryFragmentActivity extends AppCompatActivity {
             fManager.beginTransaction().replace(R.id.fragment_container, fragment).commit();
         }
     }
-    public UserViewModel getUserViewModel(){
-        return userViewModel;
-    }
 
 }

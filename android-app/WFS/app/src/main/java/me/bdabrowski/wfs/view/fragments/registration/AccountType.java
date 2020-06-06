@@ -45,7 +45,7 @@ public class AccountType extends Fragment {
 
         userViewModel = new ViewModelProvider(getActivity()).get(UserViewModel.class);
 
-        View view = inflater.inflate(R.layout.first_account_setup_fragment, container, false);
+        View view = inflater.inflate(R.layout.user_type_selector, container, false);
         mEmployer = view.findViewById(R.id.registerAsEmployer);
         System.out.println(newUser.getEmail());
         mEmployer.setOnClickListener(v -> {

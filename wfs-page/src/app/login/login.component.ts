@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {UserService} from '../shared/user.service';
+import {User} from '../model/user';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -7,16 +9,30 @@ import {UserService} from '../shared/user.service';
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
-
-  user: User;
-  constructor(userService: UserService) { }
+  user: User = {
+    id: null,
+    email: null,
+    password: null,
+    firstName: null,
+    lastName: null,
+    userType: null,
+    companyId: null
+  };
+  constructor(private userService: UserService, private router: Router) { }
 
   ngOnInit(): void {
-    const
-
   }
-}
-export interface User{
-  email: string;
-  password: string;
+
+  public login(email: string, password: string){
+    return this.userService.getUserByEmailAndPassword(email, password).subscribe(
+      res => {
+        this.user = res;
+        localStorage.setItem('user', JSON.stringify(this.user));
+        this.router.navigate(['/']);
+      }, error => {
+        alert('incorrect information');
+      }
+    );
+  }
+
 }

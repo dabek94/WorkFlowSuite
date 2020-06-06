@@ -1,20 +1,21 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-
 import { AppComponent } from './app.component';
-import { NavigationComponent } from './navigation/navigation.component';
 import { LoginComponent } from './login/login.component';
 import { EmployeesComponent } from './employees/employees.component';
 import {Router, RouterModule, Routes} from '@angular/router';
 import {FormsModule} from '@angular/forms';
-import { IntroComponent } from './intro/intro.component';
+import { IndexComponent } from './index/index.component';
 import { SignUpComponent } from './sign-up/sign-up.component';
 import {HttpClientModule} from '@angular/common/http';
+import { AccountComponent } from './account/account.component';
+import {NavigationUnsignedComponent} from './header/navigation_unsigned/navigation-unsigned.component';
+import {NavigationComponent} from './header/navigation/navigation.component';
 
 const appRoutes: Routes = [
   {
     path: '',
-    component: IntroComponent
+    component: IndexComponent
   },
   {
     path: 'employees',
@@ -27,17 +28,23 @@ const appRoutes: Routes = [
   {
     path: 'signUp',
     component: SignUpComponent
+  },
+  {
+    path: 'account',
+    component: AccountComponent
   }
 ];
 
 @NgModule({
   declarations: [
     AppComponent,
+    NavigationUnsignedComponent,
     NavigationComponent,
     LoginComponent,
+    SignUpComponent,
+    IndexComponent,
     EmployeesComponent,
-    IntroComponent,
-    SignUpComponent
+    AccountComponent,
   ],
   imports: [
     BrowserModule,
