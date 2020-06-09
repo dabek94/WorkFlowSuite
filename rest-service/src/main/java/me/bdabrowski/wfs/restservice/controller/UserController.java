@@ -4,7 +4,6 @@ import me.bdabrowski.wfs.restservice.model.Address;
 import me.bdabrowski.wfs.restservice.model.User;
 import me.bdabrowski.wfs.restservice.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.expression.ExpressionException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -19,7 +18,6 @@ public class UserController {
 
     @Autowired
     UserRepository userRepository;
-
 
     @PostMapping("/{email}/{password}")
     public ResponseEntity<User> selectByEmailAndPassword(@PathVariable(value = "email") String email,
@@ -80,10 +78,11 @@ public class UserController {
         if(existingUser.isPresent()){
             User _user = existingUser.get();
             Address _address = _user.getAddress();
-            _address.setCountry(address.getCountry());
-            _address.setState(address.getState());
             _address.setStreet(address.getStreet());
+            _address.setCity(address.getCity());
+            _address.setState(address.getState());
             _address.setZipCode(address.getZipCode());
+            _address.setCountry(address.getCountry());
             _user.setAddress(_address);
             userRepository.save(_user);
             return new ResponseEntity<>(_user.getAddress(), HttpStatus.OK);

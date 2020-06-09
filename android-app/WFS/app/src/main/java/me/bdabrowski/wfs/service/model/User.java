@@ -83,7 +83,9 @@ public class User implements Serializable {
     }
 
     public boolean isUserEmployed(){
-        if(companyId != null){
+
+
+        if(companyId != 0){
             return true;
         }
         return false;

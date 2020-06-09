@@ -42,8 +42,6 @@ public class EmployeeMainMenu extends Fragment {
         employeeMenuBinding.setUser(userViewModel.getUser().getValue());
         View view = employeeMenuBinding.getRoot();
 
-        bodyFragment = getFragmentManager().findFragmentById(R.id.employee_menu_body);
-
         //profile icon
         profilePicture = view.findViewById(R.id.profile_picture);
         profilePicture.setOnClickListener(v -> {
@@ -56,13 +54,13 @@ public class EmployeeMainMenu extends Fragment {
         bottomNavigationView.setOnNavigationItemSelectedListener(item -> {
             switch (item.getItemId()){
                 case R.id.employee_home:
-                    return changeHomeView();
+                    changeHomeView();
+                    return true;
                 case R.id.employee_company:
                     //TODO FRAGMENT
                     return true;
                 case R.id.employee_jobs:
-                    //TODO FRAGMENT
-                    return true;
+                    return changeJobsView();
             }
             return false;
         });
@@ -70,7 +68,12 @@ public class EmployeeMainMenu extends Fragment {
     }
 
     private boolean changeHomeView(){
-        this.bodyFragment = FragmentContentFactory.createEmployeeMenuBody(userViewModel.getUser().getValue());
+        Fragment fragment = FragmentContentFactory.createEmployeeMenuBody(userViewModel.getUser().getValue());
+        getFragmentManager().beginTransaction().replace(R.id.menu_body_container, fragment).commit();
+        return true;
+    }
+    private boolean changeJobsView(){
+        getFragmentManager().beginTransaction().replace(R.id.menu_body_container, new EmployeeJobInterest()).commit();
         return true;
     }
 

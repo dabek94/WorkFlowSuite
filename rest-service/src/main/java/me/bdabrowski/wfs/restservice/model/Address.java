@@ -28,10 +28,11 @@ public class Address {
     /*
             TEMPORARY CONSTROCTOR USED IN TEMPORARLDATA CLASS, WILL BE REMOVE IN PRODUCTIOn
      */
-    public Address(String street, String state, String country, String zipCode) {
+    public Address(String street,String city, String state, String country, String zipCode) {
         this.street = street;
+        this.city = city;
         this.state = state;
         this.country = country;
-        ZipCode = zipCode;
+        this.ZipCode = zipCode;
     }
 }

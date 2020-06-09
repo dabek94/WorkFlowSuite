@@ -40,7 +40,7 @@ public class User {
     public User(){};
 
     /*
-            TEMPORARY CONSTROCTOR USED IN TEMPORARLDATA CLASS, WILL BE REMOVE IN PRODUCTIOn
+            TEMPORARY CONSTROCTOR USED IN TEMPORARLDATA CLASS, WILL BE REMOVE IN PRODUCTION
      */
     public User(String email, String password, String firstName, String lastName, String userType, Long companyId) {
         this.email = email;

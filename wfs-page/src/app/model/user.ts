@@ -1,3 +1,5 @@
+import {Address} from './Address';
+
 export interface User {
   id: bigint;
   email: string;
@@ -6,4 +8,5 @@ export interface User {
   lastName: string;
   userType: string;
   companyId: bigint;
+  address: Address;
 }

@@ -1,6 +1,20 @@
-<div class="container-fluid col-12 bg-light">
+<div class="container-fluid col-12">
   <div class="container p-2">
     <p class="d-flex justify-content-center fa fa-user-circle-o"></p>
-    <h2 class="d-flex justify-content-center text-black-50">{{user.firstName}} {{user.lastName}} </h2>
+    <h1 class="d-flex justify-content-center text-black-50">{{user.firstName}} {{user.lastName}} </h1>
+    <h2 class="d-flex justify-content-center text-black-50">
+      {{user.email}}
+    </h2>
+    <a class="d-flex pb-4 justify-content-center"routerLink="update">Update Email</a><br>
+    <h2 class="d-flex justify-content-center text-black-50">
+      {{user.address.street}} {{user.address.city}}
+    </h2>
+    <h2 class="d-flex justify-content-center text-black-50">
+      {{user.address.state}} {{user.address.country}}
+    </h2>
+    <a class="d-flex pb-4 justify-content-center"routerLink="update">Update Address</a><br>
+    <a class="d-flex pb-4 justify-content-center"routerLink="update">Update Password</a><br>
+    <a class="d-flex justify-content-center  fa fa-close" routerLink="#">Delete</a>
   </div>
 </div>
+<router-outlet></router-outlet>

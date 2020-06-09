@@ -27,19 +27,15 @@ public class TemporalData {
     }
     private List<User> createUsers(){
         List<User> users = List.of(
-                new User("email1@pl", "password1", "andrzej", "nazwisko1", "employee", 1L),
-                new User("email1@p2", "password2", "andrzej", "nazwisko2", "employer",1L),
-                new User("email1@p3", "password3", "andrzej", "nazwisko3", "employee",1L),
-                new User("email1@p4", "password4", "andrzej", "nazwisko4", "employee",2L),
-                new User("email1@p5", "password5", "andrzej", "nazwisko5", "employee",3L),
-                new User("email1@p6", "password6", "andrzej", "nazwisko6", "employee",3L),
-                new User()
+                new User("employee@pl", "employee", "Andrzej", "Andrzejowski", "employee", 1L),
+                new User("employer@pl", "employer", "Sebastian", "Sabastianski", "employer",1L)
+
         );
         return users;
     }
     private Address createAddresses(){
         Random random = new Random();
         int n = random.nextInt();
-        return new Address("street" + n, "state" + n,"country" + n, "zip" + n);
+        return new Address("street" + n, "city"+n,"state" + n,"country" + n, "zip" + n);
     }
 }

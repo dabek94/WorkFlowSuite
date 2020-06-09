@@ -13,6 +13,7 @@ import androidx.lifecycle.ViewModelProvider;
 
 import me.bdabrowski.wfs.R;
 import me.bdabrowski.wfs.view.fragments.menu.employee.EmployeeMainMenu;
+import me.bdabrowski.wfs.view.fragments.menu.employer.EmployerMainMenu;
 import me.bdabrowski.wfs.view.utils.FragmentNavigator;
 import me.bdabrowski.wfs.viewmodel.UserViewModel;
 
@@ -44,8 +45,11 @@ public class Login extends Fragment {
                     Toast.makeText(getContext(), "Check your internet connection", Toast.LENGTH_LONG).show();
                     return;
                 } else if (login.equals(user.getEmail()) && password.equals(user.getPassword())) {
-
-                    FragmentNavigator.get().changeView(this, new EmployeeMainMenu());
+                    if (user.getUserType().equalsIgnoreCase("employee")) {
+                        FragmentNavigator.get().changeView(this, new EmployeeMainMenu());
+                    } else {
+                        FragmentNavigator.get().changeView(this, new EmployerMainMenu());
+                    }
 
                     Toast.makeText(getContext(), "OK", Toast.LENGTH_LONG).show();
                     return;

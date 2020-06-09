@@ -11,6 +11,7 @@ import {HttpClientModule} from '@angular/common/http';
 import { AccountComponent } from './account/account.component';
 import {NavigationUnsignedComponent} from './header/navigation_unsigned/navigation-unsigned.component';
 import {NavigationComponent} from './header/navigation/navigation.component';
+import { AccountUpdateComponent } from './account-update/account-update.component';
 
 const appRoutes: Routes = [
   {
@@ -32,7 +33,12 @@ const appRoutes: Routes = [
   {
     path: 'account',
     component: AccountComponent
+  },
+  {
+    path: 'account/update',
+    component: AccountUpdateComponent
   }
+
 ];
 
 @NgModule({
@@ -45,6 +51,7 @@ const appRoutes: Routes = [
     IndexComponent,
     EmployeesComponent,
     AccountComponent,
+    AccountUpdateComponent,
   ],
   imports: [
     BrowserModule,

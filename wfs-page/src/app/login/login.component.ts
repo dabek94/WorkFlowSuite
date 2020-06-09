@@ -16,7 +16,8 @@ export class LoginComponent implements OnInit {
     firstName: null,
     lastName: null,
     userType: null,
-    companyId: null
+    companyId: null,
+    address: null
   };
   constructor(private userService: UserService, private router: Router) { }
 
