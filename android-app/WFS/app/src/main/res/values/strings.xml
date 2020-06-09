@@ -29,6 +29,12 @@
     <!-- Profile View settings -->
     <string name="profile_user_name">%s %s</string>
 
+    <!-- Profile Update-->
+    <string name="acc_update_desc">Account settings</string>
+    <string name="update_email">change email</string>
+    <string name="update_password">change password</string>
+    <string name="update_address">change address</string>
+    <string name="upload_cv">upload cv</string>
     <!-- New user -->
     <string name="welcome_text">Welcome %s</string>
     <string name="welcome_description">

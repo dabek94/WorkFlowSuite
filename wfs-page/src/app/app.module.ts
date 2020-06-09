@@ -1,17 +1,18 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { AppComponent } from './app.component';
-import { LoginComponent } from './login/login.component';
-import { EmployeesComponent } from './employees/employees.component';
+import { LoginComponent } from './componenets/login/login.component';
+import { EmployeesComponent } from './componenets/company/employees/employees.component';
 import {Router, RouterModule, Routes} from '@angular/router';
 import {FormsModule} from '@angular/forms';
-import { IndexComponent } from './index/index.component';
-import { SignUpComponent } from './sign-up/sign-up.component';
+import { IndexComponent } from './componenets/index/index.component';
+import { SignUpComponent } from './componenets/sign-up/sign-up.component';
 import {HttpClientModule} from '@angular/common/http';
-import { AccountComponent } from './account/account.component';
-import {NavigationUnsignedComponent} from './header/navigation_unsigned/navigation-unsigned.component';
-import {NavigationComponent} from './header/navigation/navigation.component';
-import { AccountUpdateComponent } from './account-update/account-update.component';
+import { AccountComponent } from './componenets/account/account.component';
+import {NavigationUnsignedComponent} from './componenets/header/navigation_unsigned/navigation-unsigned.component';
+import {NavigationComponent} from './componenets/header/navigation/navigation.component';
+import { AccountUpdateComponent } from './componenets/account/account-update/account-update.component';
+import { EmployeeItemComponent } from './componenets/company/employee-item/employee-item.component';
 
 const appRoutes: Routes = [
   {
@@ -52,6 +53,7 @@ const appRoutes: Routes = [
     EmployeesComponent,
     AccountComponent,
     AccountUpdateComponent,
+    EmployeeItemComponent,
   ],
   imports: [
     BrowserModule,

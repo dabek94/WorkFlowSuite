@@ -9,6 +9,7 @@ import javax.persistence.*;
 @Getter
 @Setter
 @ToString
+@RequiredArgsConstructor
 public class User {
 
     @Id
@@ -37,7 +38,6 @@ public class User {
     @OneToOne(cascade = CascadeType.ALL)
     Address address = new Address();
 
-    public User(){};
 
     /*
             TEMPORARY CONSTROCTOR USED IN TEMPORARLDATA CLASS, WILL BE REMOVE IN PRODUCTION

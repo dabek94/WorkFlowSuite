@@ -16,7 +16,7 @@ public class EmployeeMenuBody extends Fragment {
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.employed_menu_body,container,false);
+        View view = inflater.inflate(R.layout.employee_menu_body,container,false);
         return view;
     }
 }

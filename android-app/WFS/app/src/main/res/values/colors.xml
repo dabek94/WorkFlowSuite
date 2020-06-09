@@ -15,8 +15,8 @@
     <color name="ZielonyBottomColor">#53FF1F</color>
 
     <!-- Default context background -->
-    <color name="DefaultCenterColor">#fc3862</color>
-    <color name="DefaultTopColor">#f26b4a</color>
-    <color name="DefaultBottomColor">#ed328f</color>
+    <color name="DefaultCenterColor">#91b3c4</color>
+    <color name="DefaultTopColor">#c5e0e6</color>
+    <color name="DefaultBottomColor">#9ac1d6</color>
 
 </resources>

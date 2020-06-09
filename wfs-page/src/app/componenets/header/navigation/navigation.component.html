@@ -1,0 +1,33 @@
+<nav class="navbar navbar-light navbar-expand-md justify-content-md-center justify-content-start">
+  <button class="navbar-toggler ml-1" type="button" data-toggle="collapse" data-target="#collapsingNavbar2">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <a class="navbar-brand" href="#">
+    <img src="../../../../assets/logo.png" alt="Logo" style="max-width:100px; margin-top: -7px;">
+  </a>
+  <div class="navbar-collapse collapse justify-content-center align-items-center w-100" id="collapsingNavbar2">
+    <ul class="navbar-nav mx-auto text-md-center text-left">
+      <li class="nav-item ">
+        <a class="nav-link" routerLink="/">Home</a>
+      </li>
+      <li class="nav-item ">
+        <a class="nav-link" routerLink="/signUp">Company</a>
+      </li>
+      <li class="nav-item ">
+        <a class="nav-link" routerLink="/signUp">Job Finder</a>
+      </li>
+
+    </ul>
+    <ul class="nav navbar-nav flex-row justify-content-md-center justify-content-start flex-nowrap">
+      <li  class="nav-item"><a class="nav-link" routerLink="/account"><i class="fa fa-user-circle"></i>{{user.firstName}}
+      </a>
+      </li>
+      <li class="nav-item"><a class="nav-link" href=""><i class="fa fa-facebook mr-1"></i></a> </li>
+      <li class="nav-item"><a class="nav-link" href=""><i class="fa fa-twitter"></i></a> </li>
+      <li class="nav-item"><a (click)="signOut()" class="nav-link" href=""><i class="fa fa-sign-out"></i>Sign out</a> </li>
+    </ul>
+  </div>
+
+</nav>
+

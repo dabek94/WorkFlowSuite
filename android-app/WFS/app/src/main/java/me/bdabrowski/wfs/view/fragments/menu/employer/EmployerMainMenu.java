@@ -10,13 +10,12 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
 import me.bdabrowski.wfs.R;
-import me.bdabrowski.wfs.databinding.OwnerMenuBinding;
 import me.bdabrowski.wfs.viewmodel.UserViewModel;
 
 public class EmployerMainMenu extends Fragment {
 
     private UserViewModel userViewModel;
-    private OwnerMenuBinding ownerMenuBinding;
+
 
     @Nullable
     @Override

@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {Observable} from 'rxjs';
 import {User} from '../model/user';
-import {NewUser} from '../sign-up/sign-up.component';
+import {NewUser} from '../componenets/sign-up/sign-up.component';
 import {Address} from '../model/Address';
 
 @Injectable({
