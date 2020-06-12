@@ -48,7 +48,7 @@ public class UserController {
     //THIS REQUIRES NOT NULL IN FORM
     @PutMapping("/update/email/{id}")
     public ResponseEntity<User> updateEmail(@RequestBody User user, @PathVariable("id") Long id){
-        Optional<User> existingUser = userRepository.findById(id);
+        Optional<User> existingUser =  userRepository.findById(id);
         if(existingUser.isPresent()){
             User _user = existingUser.get();
             _user.setEmail(user.getEmail());

@@ -20,6 +20,7 @@
     <string name="create_account_description">CREATE YOUR LOGIN</string>
     <string name="accept_tos">Accept terms of use</string>
     <string name="cancel_registration">Cancel</string>
+    <string name="next_button_label">Next</string>
     <!-- Sign in -->
     <string name="sign_in_description">SIGN IN</string>
     <string name="sign_in_button">GET STARTED</string>
@@ -35,6 +36,10 @@
     <string name="update_password">change password</string>
     <string name="update_address">change address</string>
     <string name="upload_cv">upload cv</string>
+    <!-- Email Update -->
+    <string name="current_email">current email</string>
+    <string name="new_email">new_email</string>
+    <string name="reenter_new_email">re-enter email</string>
     <!-- New user -->
     <string name="welcome_text">Welcome %s</string>
     <string name="welcome_description">

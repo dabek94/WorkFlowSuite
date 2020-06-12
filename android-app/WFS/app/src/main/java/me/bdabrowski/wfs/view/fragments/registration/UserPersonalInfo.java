@@ -7,55 +7,61 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.navigation.NavController;
+import androidx.navigation.Navigation;
 
 import me.bdabrowski.wfs.R;
 import me.bdabrowski.wfs.service.model.Address;
 import me.bdabrowski.wfs.service.model.User;
 import me.bdabrowski.wfs.view.utils.FragmentNavigator;
 
-public class UserPersonalInfo extends Fragment {
+public class UserPersonalInfo extends Fragment implements View.OnClickListener {
 
 
     private EditText mFirstName, mLastName, mStreet, mCity;
-    private Button mSubmitButton;
-
-    private static final String USER_PERSONAL_INFO_ARG
-            = "me.bdabrowski.wfs.view.fragment.UserPersonalInfo";
-
-    public static UserPersonalInfo newInstance(User user) {
-        Bundle args = new Bundle();
-        args.putSerializable(USER_PERSONAL_INFO_ARG, user);
-        UserPersonalInfo fragment = new UserPersonalInfo();
-        fragment.setArguments(args);
-        return fragment;
-    }
+    private NavController navController;
 
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState){
-        View view = inflater.inflate(R.layout.user_personal_info, container, false);
-        User user = (User) getArguments().get(USER_PERSONAL_INFO_ARG);
-
-        initComponents(view);
-        mSubmitButton.setOnClickListener(v -> {
-
-            user.setFirstName(mFirstName.getText().toString());
-            user.setLastName(mLastName.getText().toString());
-
-            Address _address = new Address();
-            _address.setStreet(mStreet.getText().toString());
-            _address.setCity(mCity.getText().toString());
-            user.setAddress(_address);
-            FragmentNavigator.get().changeViewBackStack(this, AccountType.newInstance(user));
-        });
-        return view;
+        return inflater.inflate(R.layout.user_personal_info, container, false);
     }
 
-    private void initComponents(View view){
+    @Override
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+        navController = Navigation.findNavController(view);
+        instantiateComponents(view);
+        }
+
+    private void instantiateComponents(View view){
+        //form
         mFirstName = view.findViewById(R.id.newUserFirstName);
         mLastName = view.findViewById(R.id.newUserLastName);
         mStreet = view.findViewById(R.id.newUserAddress);
         mCity = view.findViewById(R.id.newUserCity);
-        mSubmitButton = view.findViewById(R.id.newUserSubmit);
+        //submit button
+        view.findViewById(R.id.newUserSubmit).setOnClickListener(this);
     }
 
+    @Override
+    public void onClick(View v) {
+        navController.navigate(R.id.action_userPersonalInfo_to_accountType, createUserBundle());
+    }
+
+    private Bundle createUserBundle(){
+        User user = (User) getArguments().get("user");
+        user.setFirstName(mFirstName.getText().toString());
+        user.setLastName(mLastName.getText().toString());
+        Address _address = new Address();
+        _address.setStreet(mStreet.getText().toString());
+        _address.setCity(mCity.getText().toString());
+        user.setAddress(_address);
+
+        Bundle bundle = new Bundle();
+        bundle.putSerializable("user", user);
+        return bundle;
+    }
 }

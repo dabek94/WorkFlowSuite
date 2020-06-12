@@ -33,15 +33,15 @@ public abstract class PrimaryFragmentActivity extends AppCompatActivity {
 
     private void displayFragment() {
         FragmentManager fManager = getSupportFragmentManager();
-        Fragment fragment = fManager.findFragmentById(R.id.fragment_container);
+        Fragment fragment = fManager.findFragmentById(R.id.nav_host_fragment);
 
         if (fragment == null) {
             fragment = createFragment();
             fManager.beginTransaction()
-                    .add(R.id.fragment_container, fragment)
+                    .add(R.id.nav_host_fragment, fragment)
                     .commit();
         } else {
-            fManager.beginTransaction().replace(R.id.fragment_container, fragment).commit();
+            fManager.beginTransaction().replace(R.id.nav_host_fragment, fragment).commit();
         }
     }
 

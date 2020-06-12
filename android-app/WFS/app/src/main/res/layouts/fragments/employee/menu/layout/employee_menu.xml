@@ -12,7 +12,7 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@drawable/context_background_red">
+        android:background="@drawable/wfs_background_light">
 
         <LinearLayout
             android:id="@+id/linearLayout"
@@ -40,8 +40,11 @@
                 android:textSize="22sp" />
         </LinearLayout>
 
-        <FrameLayout
-            android:id="@+id/menu_body_container"
+        <fragment
+            android:id="@+id/menu_body_nav"
+            android:name="androidx.navigation.fragment.NavHostFragment"
+            app:navGraph="@navigation/nav_employee"
+            app:defaultNavHost="true"
             android:layout_width="0dp"
             android:layout_height="0dp"
             app:layout_constrainedHeight="true"

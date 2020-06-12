@@ -1,6 +1,7 @@
 package me.bdabrowski.wfs.view.fragments;
 
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -8,60 +9,73 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
+import androidx.navigation.NavController;
+import androidx.navigation.Navigation;
+
+import java.util.function.Function;
 
 import me.bdabrowski.wfs.R;
+import me.bdabrowski.wfs.service.model.User;
 import me.bdabrowski.wfs.view.fragments.menu.employee.EmployeeMainMenu;
 import me.bdabrowski.wfs.view.fragments.menu.employer.EmployerMainMenu;
 import me.bdabrowski.wfs.view.utils.FragmentNavigator;
 import me.bdabrowski.wfs.viewmodel.UserViewModel;
 
-public class Login extends Fragment {
-    private UserViewModel userViewModel;
+public class Login extends Fragment implements View.OnClickListener {
 
+    private UserViewModel userViewModel;
+    private NavController navController;
     private EditText mUserName;
     private EditText mUserPassword;
-    private Button mSignIn;
+
 
     @Override
-    public View onCreateView(LayoutInflater inflater,
-                             ViewGroup container,
+    public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+        return inflater.inflate(R.layout.login_fragment, container, false);
+    }
+
+    @Override
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
 
         userViewModel = new ViewModelProvider(getActivity()).get(UserViewModel.class);
-        View loginView = inflater.inflate(R.layout.login_fragment, container, false);
-        mUserName = loginView.findViewById(R.id.userEmail);
-        mUserPassword = loginView.findViewById(R.id.userPassword);
+        navController = Navigation.findNavController(view);
+        mUserName = view.findViewById(R.id.userEmail);
+        mUserPassword = view.findViewById(R.id.userPassword);
 
-        mSignIn = loginView.findViewById(R.id.confirmLogin);
-        mSignIn.setOnClickListener(v -> {
-            String login = mUserName.getText().toString();
-            String password = mUserPassword.getText().toString();
+        view.findViewById(R.id.confirmLogin).setOnClickListener(this);
+    }
+    @Override
+    public void onClick(View v) {
+        String login = mUserName.getText().toString();
+        String password = mUserPassword.getText().toString();
 
-            userViewModel.getUser(login, password).observe(getActivity(), user -> {
-
-                if (user == null) {
-                    Toast.makeText(getContext(), "Check your internet connection", Toast.LENGTH_LONG).show();
-                    return;
-                } else if (login.equals(user.getEmail()) && password.equals(user.getPassword())) {
-                    if (user.getUserType().equalsIgnoreCase("employee")) {
-                        FragmentNavigator.get().changeView(this, new EmployeeMainMenu());
-                    } else {
-                        FragmentNavigator.get().changeView(this, new EmployerMainMenu());
-                    }
-
-                    Toast.makeText(getContext(), "OK", Toast.LENGTH_LONG).show();
-                    return;
+        userViewModel.getUser(login, password).observe(getActivity(), user-> {
+            //error with connection
+            if (user == null) {
+                Toast.makeText(getContext(), "Check your internet connection", Toast.LENGTH_LONG).show();
+                return;
+            }
+            //given information doesn't match remote database
+            else if (user.getEmail() == null) {
+                Toast.makeText(getContext(), "Invalid information", Toast.LENGTH_LONG).show();
+                return;
+            }
+            //if success
+            else {
+                if (user.getUserType().equalsIgnoreCase("employee")) {
+                    navController.navigate(R.id.action_login_to_employeeMainMenu);
                 }
-                //given information doesn't match remote database
-                else if (user.getEmail() == null) {
-                    Toast.makeText(getContext(), "Invalid information", Toast.LENGTH_LONG).show();
-                    return;
+                else {
+                    navController.navigate(R.id.action_login_to_employerMainMenu);
                 }
-            });
+                return;
+            }
         });
-
-        return loginView;
     }
 }

@@ -19,14 +19,14 @@ public class FragmentNavigator {
 
     public void changeView(Fragment fragment, Object newFragment) {
         fragment.getFragmentManager().beginTransaction()
-                .replace(R.id.fragment_container, (Fragment) newFragment)
+                .replace(R.id.nav_host_fragment, (Fragment) newFragment)
                 .commit();
 
     }
 
     public void changeViewBackStack(Fragment fragment, Object newFragment) {
         fragment.getFragmentManager().beginTransaction()
-                .replace(R.id.fragment_container, (Fragment) newFragment)
+                .replace(R.id.nav_host_fragment, (Fragment) newFragment)
                 .addToBackStack(null)
                 .commit();
     }

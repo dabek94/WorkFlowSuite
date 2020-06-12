@@ -12,6 +12,9 @@ import androidx.annotation.Nullable;
 import androidx.databinding.DataBindingUtil;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
+import androidx.navigation.NavController;
+import androidx.navigation.Navigation;
+import androidx.navigation.ui.NavigationUI;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
@@ -22,7 +25,7 @@ import me.bdabrowski.wfs.view.utils.FragmentContentFactory;
 import me.bdabrowski.wfs.view.utils.FragmentNavigator;
 import me.bdabrowski.wfs.viewmodel.UserViewModel;
 
-public class EmployeeMainMenu extends Fragment {
+public class EmployeeMainMenu extends Fragment{
 
     private UserViewModel userViewModel;
     private EmployeeMenuBinding employeeMenuBinding;
@@ -30,7 +33,7 @@ public class EmployeeMainMenu extends Fragment {
 
     private BottomNavigationView bottomNavigationView;
 
-    private Fragment bodyFragment;
+    private NavController navController;
 
     @Nullable
     @Override
@@ -38,43 +41,27 @@ public class EmployeeMainMenu extends Fragment {
                              @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
         userViewModel = new ViewModelProvider(getActivity()).get(UserViewModel.class);
+
         employeeMenuBinding = DataBindingUtil.inflate(inflater, R.layout.employee_menu, container, false);
         employeeMenuBinding.setUser(userViewModel.getUser().getValue());
-        View view = employeeMenuBinding.getRoot();
 
+        View view = employeeMenuBinding.getRoot();
         //profile icon
         profilePicture = view.findViewById(R.id.profile_picture);
         profilePicture.setOnClickListener(v -> {
             FragmentNavigator.get().changeViewBackStack(this, new AccountSettings());
         });
 
-        //bottom navigation view
-        bottomNavigationView = view.findViewById(R.id.employee_menu_bottom_navigation);
-        bottomNavigationView.setSelectedItemId(R.id.employee_home);
-        bottomNavigationView.setOnNavigationItemSelectedListener(item -> {
-            switch (item.getItemId()){
-                case R.id.employee_home:
-                    changeHomeView();
-                    return true;
-                case R.id.employee_company:
-                    //TODO FRAGMENT
-                    return true;
-                case R.id.employee_jobs:
-                    return changeJobsView();
-            }
-            return false;
-        });
         return view;
     }
 
-    private boolean changeHomeView(){
-        Fragment fragment = FragmentContentFactory.createEmployeeMenuBody(userViewModel.getUser().getValue());
-        getFragmentManager().beginTransaction().replace(R.id.menu_body_container, fragment).commit();
-        return true;
-    }
-    private boolean changeJobsView(){
-        getFragmentManager().beginTransaction().replace(R.id.menu_body_container, new EmployeeJobInterest()).commit();
-        return true;
-    }
+    @Override
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
 
+        navController = Navigation.findNavController(view.findViewById(R.id.menu_body_nav));
+        bottomNavigationView = view.findViewById(R.id.employee_menu_bottom_navigation);
+        NavigationUI.setupWithNavController(bottomNavigationView, navController);
+
+    }
 }
