@@ -47,10 +47,12 @@ public class AccountType extends Fragment implements View.OnClickListener {
         switch (v.getId()){
             case R.id.registerAsEmployer:
                 userBundleArg.setUserType("employer");
+                userBundleArg.setCompanyId(0L);
                 break;
             case R.id.registerAsEmployee:
                 //TODO Work on owner will start after user is finished
                 userBundleArg.setUserType("employee");
+                userBundleArg.setCompanyId(0L);
                 break;
         }
         userViewModel.addNewUser(userBundleArg).observe(getActivity(), user -> {

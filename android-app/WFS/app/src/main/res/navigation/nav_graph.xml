@@ -114,7 +114,7 @@
         </fragment>
         <fragment
             android:id="@+id/accountSettings"
-            android:name="me.bdabrowski.wfs.view.fragments.account.AccountSettings"
+            android:name="me.bdabrowski.wfs.view.fragments.account.AccountContainer"
             android:label="AccountSettings" />
     </navigation>
 

@@ -5,7 +5,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageButton;
-import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -20,8 +19,7 @@ import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import me.bdabrowski.wfs.R;
 import me.bdabrowski.wfs.databinding.EmployeeMenuBinding;
-import me.bdabrowski.wfs.view.fragments.account.AccountSettings;
-import me.bdabrowski.wfs.view.utils.FragmentContentFactory;
+import me.bdabrowski.wfs.view.fragments.account.AccountContainer;
 import me.bdabrowski.wfs.view.utils.FragmentNavigator;
 import me.bdabrowski.wfs.viewmodel.UserViewModel;
 
@@ -49,7 +47,7 @@ public class EmployeeMainMenu extends Fragment{
         //profile icon
         profilePicture = view.findViewById(R.id.profile_picture);
         profilePicture.setOnClickListener(v -> {
-            FragmentNavigator.get().changeViewBackStack(this, new AccountSettings());
+            FragmentNavigator.get().changeViewBackStack(this, new AccountContainer());
         });
 
         return view;

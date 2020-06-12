@@ -12,12 +12,10 @@ import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 
 import me.bdabrowski.wfs.R;
-import me.bdabrowski.wfs.databinding.AccountSettingsBinding;
 import me.bdabrowski.wfs.viewmodel.UserViewModel;
 
-public class AccountSettings extends Fragment {
+public class AccountContainer extends Fragment {
 
-    AccountSettingsBinding accountSettingsBinding;
     UserViewModel userViewModel;
 
     @Nullable
@@ -25,15 +23,6 @@ public class AccountSettings extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater,
                              @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
-
-        userViewModel = new ViewModelProvider(getActivity()).get(UserViewModel.class);
-        accountSettingsBinding = DataBindingUtil.inflate(
-                                                 inflater, R.layout.account_settings,
-                                                 container, false);
-        accountSettingsBinding.setUser(userViewModel.getUser().getValue());
-
-        View view = accountSettingsBinding.getRoot();
-        return view;
-
+        return inflater.inflate(R.layout.account_settings_container, container, false);
     }
 }

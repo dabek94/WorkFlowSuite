@@ -11,6 +11,8 @@ import androidx.annotation.Nullable;
 import androidx.databinding.DataBindingUtil;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
+import androidx.navigation.NavController;
+import androidx.navigation.Navigation;
 
 import me.bdabrowski.wfs.R;
 import me.bdabrowski.wfs.databinding.NewUserWelcomeBinding;
@@ -18,10 +20,11 @@ import me.bdabrowski.wfs.service.model.User;
 import me.bdabrowski.wfs.view.utils.FragmentNavigator;
 import me.bdabrowski.wfs.viewmodel.UserViewModel;
 
-public class NewEmployeeWelcome extends Fragment {
+public class NewEmployeeWelcome extends Fragment implements View.OnClickListener {
 
     UserViewModel userViewModel;
     NewUserWelcomeBinding userWelcomeBinding;
+    NavController navController;
 
     private Button mStartButton;
 
@@ -33,14 +36,24 @@ public class NewEmployeeWelcome extends Fragment {
         User _user = userViewModel.getUser().getValue();
         userWelcomeBinding.setUser(_user);
         View view = userWelcomeBinding.getRoot();
-        mStartButton = view.findViewById(R.id.welcome_submit);
-        mStartButton.setOnClickListener((v -> {
-            FragmentNavigator.get().changeView(this, new EmployeeJobInterest());
-        }));
-
-
+        view.findViewById(R.id.welcome_submit).setOnClickListener(this);
         return view;
     }
 
 
+    @Override
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+        navController = Navigation.findNavController(view);
+    }
+
+    @Override
+    public void onClick(View v) {
+        User user = userViewModel.getUser().getValue();
+        if(user.getUserType().equals("employee")){
+            navController.navigate(R.id.action_newEmployeeWelcome_to_employeeMainMenu);
+        } else {
+            navController.navigate(R.id.action_newEmployeeWelcome_to_employerMainMenu);
+        }
+    }
 }

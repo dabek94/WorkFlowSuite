@@ -8,6 +8,7 @@ import java.util.stream.Stream;
 
 public class User implements Serializable {
 
+    private Long id;
     private String email;
     private String password;
     private String firstName;
@@ -82,13 +83,19 @@ public class User implements Serializable {
         this.address = address;
     }
 
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
     public boolean isUserEmployed(){
-
-
-        if(companyId != 0){
-            return true;
+        if(companyId == 0){
+            return false;
         }
-        return false;
+        return true;
     }
     public boolean isUserAddressSetUp(){
         return this.address.isAddressIncomplete();

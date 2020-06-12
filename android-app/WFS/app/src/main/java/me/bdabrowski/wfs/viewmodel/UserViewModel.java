@@ -34,6 +34,10 @@ public class UserViewModel extends ViewModel {
         mApplicationUser = userRepository.createUser(user);
         return mApplicationUser;
     }
+    public LiveData<User> updateEmail(User user, Long id){
+        mApplicationUser = userRepository.updateEmail(user, id);
+        return mApplicationUser;
+    }
 
     public MutableLiveData<Boolean> getIsUpdating() {
         return mIsUpdating;

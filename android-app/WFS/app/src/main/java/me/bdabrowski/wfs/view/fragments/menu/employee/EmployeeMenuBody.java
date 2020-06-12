@@ -10,8 +10,12 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
 import me.bdabrowski.wfs.R;
+import me.bdabrowski.wfs.viewmodel.UserViewModel;
 
 public class EmployeeMenuBody extends Fragment {
+
+
+    private UserViewModel userViewModel;
 
     @Nullable
     @Override
@@ -19,4 +23,5 @@ public class EmployeeMenuBody extends Fragment {
         View view = inflater.inflate(R.layout.employee_menu_body,container,false);
         return view;
     }
+
 }

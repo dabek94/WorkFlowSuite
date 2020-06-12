@@ -65,17 +65,22 @@ public class UserRepository {
         });
         return user;
     }
-    public MutableLiveData<User> updateUser(@NotNull User updatedUser){
+
+    public MutableLiveData<User> updateEmail(@NotNull User updatedUser, @NotNull Long id){
         MutableLiveData<User> user = new MutableLiveData<>();
-        userAPI.createUser(updatedUser).enqueue(new Callback<User>() {
+        userAPI.updateEmail(updatedUser, id).enqueue(new Callback<User>() {
             @Override
             public void onResponse(Call<User> call, Response<User> response) {
-
+                if(!response.isSuccessful()){
+                    user.setValue(new User());
+                }
+                user.setValue(updatedUser);
+                return;
             }
 
             @Override
             public void onFailure(Call<User> call, Throwable t) {
-
+                user.setValue(null);
             }
         });
         return user;

@@ -12,7 +12,11 @@
     </fragment>
     <fragment
         android:id="@+id/employee_jobs"
-        android:name="me.bdabrowski.wfs.view.fragments.menu.employee.EmployeeJobInterest"
+        android:name="me.bdabrowski.wfs.view.fragments.menu.employee.EmployeeJobFinder"
         android:label="EmployeeJobInterest" />
+    <fragment
+        android:id="@+id/employee_company"
+        android:name="me.bdabrowski.wfs.view.fragments.menu.employee.EmployeeCompany"
+        android:label="EmployeeCompany" />
 
 </navigation>
