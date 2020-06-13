@@ -45,5 +45,6 @@
     <string name="welcome_description">
         Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt
         viverra. Tincidunt lobortis feugiat vivamus at augue eget. </string>
-    <string name="job_field">Choose in which field you seek job</string>
+    <!-- EMPLOYEE -->
+    <string name="job_field">Search for jobs</string>
 </resources>

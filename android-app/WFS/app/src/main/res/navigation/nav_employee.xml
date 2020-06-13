@@ -9,6 +9,9 @@
         android:id="@+id/employee_home"
         android:name="me.bdabrowski.wfs.view.fragments.menu.employee.EmployeeMenuBody"
         android:label="EmployeeMenuBody" >
+        <action
+            android:id="@+id/action_employee_home_to_accountContainer2"
+            app:destination="@id/accountContainer2" />
     </fragment>
     <fragment
         android:id="@+id/employee_jobs"
@@ -18,5 +21,9 @@
         android:id="@+id/employee_company"
         android:name="me.bdabrowski.wfs.view.fragments.menu.employee.EmployeeCompany"
         android:label="EmployeeCompany" />
+    <fragment
+        android:id="@+id/accountContainer2"
+        android:name="me.bdabrowski.wfs.view.fragments.account.AccountContainer"
+        android:label="AccountContainer" />
 
 </navigation>

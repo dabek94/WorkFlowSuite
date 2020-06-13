@@ -9,11 +9,13 @@ import androidx.fragment.app.FragmentManager;
 import androidx.lifecycle.ViewModelProvider;
 
 import me.bdabrowski.wfs.R;
+import me.bdabrowski.wfs.viewmodel.CompanyViewModel;
 import me.bdabrowski.wfs.viewmodel.UserViewModel;
 
 public abstract class PrimaryFragmentActivity extends AppCompatActivity {
 
     private UserViewModel userViewModel;
+    private CompanyViewModel companyViewModel;
 
     protected abstract Fragment createFragment();
 
@@ -23,6 +25,9 @@ public abstract class PrimaryFragmentActivity extends AppCompatActivity {
 
         userViewModel = new ViewModelProvider(this).get(UserViewModel.class);
         userViewModel.init();
+
+        companyViewModel = new ViewModelProvider(this).get(CompanyViewModel.class);
+        companyViewModel.init();
 
         getSupportActionBar().hide();
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,

@@ -1,5 +1,7 @@
 package me.bdabrowski.wfs.service.repository;
 
+import java.util.List;
+
 import me.bdabrowski.wfs.service.model.Company;
 import retrofit2.Call;
 import retrofit2.http.Body;
@@ -9,14 +11,13 @@ import retrofit2.http.Path;
 
 public interface CompanyAPI {
 
-    @GET("company/{companyName}")
-    Call<Company> getCompany(@Path("companyName") String companyName);
-
-    @GET("company/{userId}")
-    Call<Company> getCompanyByUserId(@Path("userId") int userId);
+    @GET("companies/{id}")
+    Call<Company> getCompany(@Path("id") Long id);
 
     @POST("company/")
     Call<Boolean> createCompany(@Body Company company);
 
+    @GET("jobs/")
+    Call<List<Company.JobOpenings>> getJobOpenings();
 
 }

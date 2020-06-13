@@ -16,4 +16,8 @@ Content-Type: application/json
 }
 
 ###
+GET {{host-url}}/companies/5
+###
+
+GET {{host-url}}/jobs
 

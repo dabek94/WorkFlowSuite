@@ -6,6 +6,8 @@ import lombok.Setter;
 import lombok.ToString;
 
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Data
@@ -25,12 +27,19 @@ public class Company {
     @Column()
     private String name;
 
+    @OneToMany(cascade = CascadeType.ALL)
+    private List<JobOpening> jobOpenings = new ArrayList<>();
+
     public Company(){};
 
     //Temporal constructor
     public Company(Long owner_id, String name) {
         this.owner_id = owner_id;
         this.name = name;
+    }
+
+    public void setJobOpenings(List<JobOpening> jobOpenings){
+        this.jobOpenings = jobOpenings;
     }
 
 }

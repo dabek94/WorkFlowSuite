@@ -27,7 +27,6 @@ public class EmployeeMainMenu extends Fragment{
 
     private UserViewModel userViewModel;
     private EmployeeMenuBinding employeeMenuBinding;
-    private ImageButton profilePicture;
 
     private BottomNavigationView bottomNavigationView;
 
@@ -45,10 +44,6 @@ public class EmployeeMainMenu extends Fragment{
 
         View view = employeeMenuBinding.getRoot();
         //profile icon
-        profilePicture = view.findViewById(R.id.profile_picture);
-        profilePicture.setOnClickListener(v -> {
-            FragmentNavigator.get().changeViewBackStack(this, new AccountContainer());
-        });
 
         return view;
     }
@@ -62,4 +57,5 @@ public class EmployeeMainMenu extends Fragment{
         NavigationUI.setupWithNavController(bottomNavigationView, navController);
 
     }
+
 }
