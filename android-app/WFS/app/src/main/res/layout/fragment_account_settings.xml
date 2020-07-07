@@ -3,7 +3,6 @@
 <layout xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <data>
-
         <variable
             name="user"
             type="me.bdabrowski.wfs.service.model.User" />
@@ -25,7 +24,7 @@
 
             <de.hdodenhof.circleimageview.CircleImageView
                 xmlns:app="http://schemas.android.com/apk/res-auto"
-                android:id="@+id/profile_image"
+                android:id="@+id/image_account_settings_profile_picture"
                 android:layout_marginTop="20dp"
                 android:layout_width="96dp"
                 android:layout_height="96dp"
@@ -34,7 +33,7 @@
                 app:civ_border_color="@color/colorAccent"
                 app:civ_circle_background_color="#ffffff" />
             <TextView
-                android:id="@+id/account_name"
+                android:id="@+id/text_account_settings_user_name"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="5dp"
@@ -52,7 +51,7 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/linearLayoutCompat"/>
         <TextView
-            android:id="@+id/textView6"
+            android:id="@+id/text_account_settings_description"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="2dp"
@@ -66,7 +65,7 @@
             app:layout_constraintTop_toBottomOf="@+id/separate1"
             />
         <Button
-            android:id="@+id/edit_email"
+            android:id="@+id/button_account_settings_update_email"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="40dp"
@@ -77,10 +76,10 @@
             android:textColor="@color/DefaultCenterColor"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textView6" />
+            app:layout_constraintTop_toBottomOf="@+id/text_account_settings_description" />
 
         <Button
-            android:id="@+id/button2"
+            android:id="@+id/button_account_settings_update_password"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="40dp"
@@ -91,9 +90,10 @@
             android:textColor="@color/DefaultCenterColor"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/edit_email" />
+            app:layout_constraintTop_toBottomOf="@+id/button_account_settings_update_email" />
 
         <Button
+            android:id="@+id/button_account_settings_update_address"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="40dp"
@@ -104,6 +104,6 @@
             android:textColor="@color/DefaultCenterColor"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/button2" />
+            app:layout_constraintTop_toBottomOf="@+id/button_account_settings_update_password" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

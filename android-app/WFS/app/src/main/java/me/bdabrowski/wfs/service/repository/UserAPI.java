@@ -27,4 +27,7 @@ public interface UserAPI {
 
     @PUT("users/update/email/{id}")
     Call<User> updateEmail(@Body User user, @Path("id")Long id);
+
+    @PUT("users/update/password/{id}")
+    Call<User> updatePassword(@Body User user, @Path("id")Long id);
 }

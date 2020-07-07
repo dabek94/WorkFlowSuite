@@ -37,14 +37,18 @@ public class AccountMenuFragment extends Fragment implements View.OnClickListene
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         navController = Navigation.findNavController(view);
-        view.findViewById(R.id.edit_email).setOnClickListener(this);
+        view.findViewById(R.id.button_account_settings_update_email).setOnClickListener(this);
+        view.findViewById(R.id.button_account_settings_update_password).setOnClickListener(this);
     }
 
     @Override
     public void onClick(View v) {
-        switch (v.getId()){
-            case R.id.edit_email:
+        switch (v.getId()) {
+            case R.id.button_account_settings_update_email:
                 navController.navigate(R.id.action_accountIndex_to_emailUpdate);
+                break;
+            case R.id.button_account_settings_update_password:
+                navController.navigate(R.id.action_accountIndex_to_passwordUpdateFragment);
         }
     }
 }

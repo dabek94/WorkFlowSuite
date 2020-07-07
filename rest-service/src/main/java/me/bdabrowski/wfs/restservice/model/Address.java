@@ -8,9 +8,6 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
-/**
- * Represents address information's for User and Company Entity
- */
 @Entity
 @Getter
 @Setter
@@ -28,8 +25,6 @@ public class Address {
 
     public Address() {
     }
-
-    ;
 
     /*
             TEMPORARY CONSTROCTOR USED IN TEMPORARLDATA CLASS, WILL BE REMOVE IN PRODUCTIOn

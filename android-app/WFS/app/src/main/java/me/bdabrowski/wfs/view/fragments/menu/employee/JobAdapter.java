@@ -13,11 +13,14 @@ import java.util.List;
 
 import me.bdabrowski.wfs.R;
 import me.bdabrowski.wfs.service.model.Company;
+import me.bdabrowski.wfs.view.activity.MainActivity;
+import me.bdabrowski.wfs.viewmodel.CompanyViewModel;
 
 public class JobAdapter extends RecyclerView.Adapter<JobAdapter.ViewHolder> {
 
     private LayoutInflater layoutInflater;
     private List<Company.JobOpenings> jobOpenings;
+
 
     public JobAdapter(Context context, List<Company.JobOpenings> jobOpenings){
         this.layoutInflater = LayoutInflater.from(context);
@@ -42,6 +45,10 @@ public class JobAdapter extends RecyclerView.Adapter<JobAdapter.ViewHolder> {
     @Override
     public int getItemCount() {
         return jobOpenings.size();
+    }
+
+    public void setItems(List<Company.JobOpenings> jobs){
+        this.jobOpenings = jobs;
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder{

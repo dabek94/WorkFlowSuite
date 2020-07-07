@@ -19,7 +19,6 @@ import me.bdabrowski.wfs.service.model.User;
 
 public class UserDetailsFragment extends Fragment implements View.OnClickListener {
 
-
     private EditText mFirstName, mLastName, mStreet, mCity;
     private NavController navController;
 

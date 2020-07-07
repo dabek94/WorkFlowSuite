@@ -4,9 +4,6 @@ import lombok.*;
 
 import javax.persistence.*;
 
-/**
- * Represents the user entity
- */
 @Entity
 @Data
 @Getter

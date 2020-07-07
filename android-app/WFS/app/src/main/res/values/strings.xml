@@ -1,13 +1,13 @@
 <resources>
     <string name="app_name">WFS</string>
     <!-- Hints -->
-    <string name="email_hint">Enter Email</string>
-    <string name="password_hint">Password</string>
-    <string name="reenter_password_hint">Re-Enter Password</string>
-    <string name="firstName_hint">First name</string>
-    <string name="lastName_hint">Last name</string>
-    <string name="street_hint">Street</string>
-    <string name="city_hint">City</string>
+    <string name="hint_email">Enter Email</string>
+    <string name="hint_password">Password</string>
+    <string name="hint_password_reenter">Re-Enter Password</string>
+    <string name="hint_first_name">First name</string>
+    <string name="hint_last_name">Last name</string>
+    <string name="hint_street">Street</string>
+    <string name="hint_city">City</string>
 
     <!-- Index -->
     <string name="facebook_singIn">Sign in with Facebook</string>
@@ -38,8 +38,10 @@
     <string name="upload_cv">upload cv</string>
     <!-- Email Update -->
     <string name="current_email">current email</string>
-    <string name="new_email">new_email</string>
-    <string name="reenter_new_email">re-enter email</string>
+    <string name="hint_new_email">new email</string>
+    <string name="hint_reenter_new_email">re-enter email</string>
+    <string name="hint_new_password">new password</string>
+    <string name="hint_reenter_new_password">re-enter password</string>
     <!-- New user -->
     <string name="welcome_text">Welcome %s</string>
     <string name="welcome_description">

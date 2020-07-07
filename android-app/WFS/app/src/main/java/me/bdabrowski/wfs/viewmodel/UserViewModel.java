@@ -38,6 +38,10 @@ public class UserViewModel extends ViewModel {
         mApplicationUser = userRepository.updateEmail(user, id);
         return mApplicationUser;
     }
+    public LiveData<User> updatePassword(User user, Long id){
+        mApplicationUser = userRepository.updatePassword(user, id);
+        return mApplicationUser;
+    }
 
     public MutableLiveData<Boolean> getIsUpdating() {
         return mIsUpdating;

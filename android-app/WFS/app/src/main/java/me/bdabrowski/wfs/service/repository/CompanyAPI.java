@@ -23,4 +23,7 @@ public interface CompanyAPI {
     @GET("jobs/")
     Call<List<Company.JobOpenings>> getJobOpenings();
 
+    @GET("jobs/{phrase}")
+    Call<List<Company.JobOpenings>> getJobOpeningsByPhrase(@Path("phrase") String phrase);
+
 }

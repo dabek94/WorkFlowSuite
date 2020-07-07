@@ -19,14 +19,15 @@ import java.util.List;
 
 import me.bdabrowski.wfs.R;
 import me.bdabrowski.wfs.service.model.Company.JobOpenings;
+import me.bdabrowski.wfs.view.activity.MainActivity;
 import me.bdabrowski.wfs.viewmodel.CompanyViewModel;
 
 public class EmployeeJobSearchFragment extends Fragment implements View.OnClickListener {
 
     private EditText jobSearchBox;
-    private CompanyViewModel companyViewModel;
     private RecyclerView recyclerView;
     private JobAdapter jobAdapter;
+    private CompanyViewModel companyViewModel;
 
     @Nullable
     @Override
@@ -39,26 +40,31 @@ public class EmployeeJobSearchFragment extends Fragment implements View.OnClickL
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        companyViewModel = new ViewModelProvider(getActivity()).get( CompanyViewModel.class);
+
         jobSearchBox = view.findViewById(R.id.job_search_box);
         jobSearchBox.setOnClickListener(this);
 
+        companyViewModel = MainActivity.getCompanyViewModel();
+
         recyclerView = view.findViewById(R.id.job_recycle_view);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
+
         List<JobOpenings> jobOpeningsList = new ArrayList<>();
+        jobAdapter = new JobAdapter(getContext(), jobOpeningsList);
+        recyclerView.setAdapter(jobAdapter);
 
         companyViewModel.getJobOpenings().observe(getActivity(), jobOpenings -> {
             if(jobOpenings == null){
-                jobAdapter = new JobAdapter(getContext(), jobOpeningsList);
 
             }
             else if(jobOpenings.size() == 0){
-                jobAdapter = new JobAdapter(getContext(), jobOpeningsList);
+                jobAdapter.setItems(jobOpenings);
+                jobAdapter.notifyDataSetChanged();
             }
             else{
-                jobAdapter = new JobAdapter(getContext(), jobOpenings);
+                jobAdapter.setItems(jobOpenings);
+                jobAdapter.notifyDataSetChanged();
             }
-            recyclerView.setAdapter(jobAdapter);
         });
     }
 
@@ -66,7 +72,21 @@ public class EmployeeJobSearchFragment extends Fragment implements View.OnClickL
     public void onClick(View v) {
         switch (v.getId()){
             case R.id.job_search_box:
-                Toast.makeText(getContext(), jobSearchBox.getText(), Toast.LENGTH_LONG).show();
+                String searedPhrase = jobSearchBox.getText().toString();
+                companyViewModel.getJobOpeningsByPhrase(searedPhrase)
+                        .observe(getActivity(), jobOpenings -> {
+                            if(jobOpenings == null){
+
+                            }
+                            else if(jobOpenings.size() == 0){
+                                jobAdapter.setItems(jobOpenings);
+                                jobAdapter.notifyDataSetChanged();
+                            }
+                            else{
+                                jobAdapter.setItems(jobOpenings);
+                                jobAdapter.notifyDataSetChanged();
+                            }
+                });
                 break;
         }
     }

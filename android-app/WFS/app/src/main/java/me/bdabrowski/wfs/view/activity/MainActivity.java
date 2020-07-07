@@ -12,8 +12,8 @@ import me.bdabrowski.wfs.viewmodel.UserViewModel;
 
 public class MainActivity extends AppCompatActivity {
 
-    private UserViewModel userViewModel;
-    private CompanyViewModel companyViewModel;
+    private static UserViewModel userViewModel;
+    private static CompanyViewModel companyViewModel;
 
 
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,4 +36,12 @@ public class MainActivity extends AppCompatActivity {
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
                 WindowManager.LayoutParams.FLAG_FULLSCREEN);
     }
+
+    public static UserViewModel getUserViewModel() {
+        return userViewModel;
+    }
+    public static CompanyViewModel getCompanyViewModel(){
+        return companyViewModel;
+    }
+
 }

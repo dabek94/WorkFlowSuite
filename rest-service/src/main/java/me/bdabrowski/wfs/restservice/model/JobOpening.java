@@ -5,9 +5,6 @@ import lombok.*;
 import javax.persistence.*;
 import java.util.Date;
 
-/**
- * Represents the available job positions that company is currently seeking
- */
 @Entity
 @Data
 @Getter
@@ -20,7 +17,6 @@ public class JobOpening {
     @Column(unique = true, nullable = false)
     private Long id;
 
-    private Long companyId;
     private String position;
     private String shortDescription;
     private Date createdTime;
@@ -29,8 +25,7 @@ public class JobOpening {
     public JobOpening() {
     }
 
-    public JobOpening(Long companyId, String shortDescription, String position) {
-        this.companyId = companyId;
+    public JobOpening(String shortDescription, String position) {
         this.shortDescription = shortDescription;
         this.position = position;
     }

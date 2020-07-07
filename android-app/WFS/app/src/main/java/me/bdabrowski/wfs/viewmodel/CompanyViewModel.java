@@ -41,4 +41,8 @@ public class CompanyViewModel extends ViewModel {
         jobOpenings = companyRepository.getAllJobOpenings();
         return jobOpenings;
     }
+    public LiveData<List<JobOpenings>> getJobOpeningsByPhrase(String phrase){
+        jobOpenings = companyRepository.getJobOpeningsByPhrase(phrase);
+        return jobOpenings;
+    }
 }

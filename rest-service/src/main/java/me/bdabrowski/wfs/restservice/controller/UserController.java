@@ -1,5 +1,6 @@
 package me.bdabrowski.wfs.restservice.controller;
 
+import javassist.NotFoundException;
 import me.bdabrowski.wfs.restservice.model.Address;
 import me.bdabrowski.wfs.restservice.model.User;
 import me.bdabrowski.wfs.restservice.repository.UserRepository;
@@ -19,20 +20,9 @@ import java.util.Optional;
 @CrossOrigin
 public class UserController {
 
-    /**
-     * Instance of UserRepository interface assigned by Spring Context Dependency Injection
-     */
     @Autowired
     UserRepository userRepository;
 
-    /**
-     * POST request listener to endpoint host:port/users/{email}/{password}
-     *
-     * @param email    given user email
-     * @param password given user password
-     *                 JSON representation of user if user with given param email and password exists in database
-     *                 or 302 status code if user does not exist
-     */
     @PostMapping("/{email}/{password}")
     public ResponseEntity<User> selectByEmailAndPassword(@PathVariable(value = "email") String email,
                                                          @PathVariable(value = "password") String password) {
@@ -42,27 +32,12 @@ public class UserController {
                 .orElse(ResponseEntity.notFound().build());
     }
 
-    /**
-     * GET request listener to endpoint host:port/users/{companyId} that searches for all users with matching company_id
-     *
-     * @param companyId company id in which employees work
-     * @return JSON Array representation of type USER if any is matching otherwise returns 302 with empty list
-     */
-
     @GetMapping("{companyId}")
     public ResponseEntity<List<User>> selectUsersByCompanyId(@PathVariable(value = "companyId") Long companyId) {
         return userRepository.getUsersByCompanyId(companyId)
                 .map(users -> ResponseEntity.ok().body(users))
                 .orElse(ResponseEntity.notFound().build());
     }
-
-    /**
-     * POST request listener to endpoint host:port/users used to create new User
-     *
-     * @param user User values matching the entity scheme, given in the request body as JSON
-     * @return JSON representation of user if adding company to database was successful,
-     * otherwise returns 417 status code
-     */
 
     @PostMapping()
     public ResponseEntity<User> createUser(@RequestBody User user) {
@@ -75,16 +50,6 @@ public class UserController {
 
     }
     //THIS REQUIRES NOT NULL IN FORM
-
-    /**
-     * PUT request listener to endpoint host:port/update/email/{id}  responsible for updating the specific User
-     * based on given id
-     *
-     * @param user New User values matching the entity scheme, given in the request body as JSON
-     * @param id   id of the desired User
-     * @return JSON representation of user if updating user in database was successful, otherwise
-     * returns 417 status code
-     */
     @PutMapping("/update/email/{id}")
     public ResponseEntity<User> updateEmail(@RequestBody User user, @PathVariable("id") Long id) {
         Optional<User> existingUser = userRepository.findById(id);
@@ -98,12 +63,6 @@ public class UserController {
         }
     }
 
-    /**
-     * PUT request listener to endpoint
-     * @par user
-     * @param id
-     * @return
-     */
     @PutMapping("/update/password/{id}")
     public ResponseEntity<User> updatePassword(@RequestBody User user,
                                                @PathVariable("id") Long id) {

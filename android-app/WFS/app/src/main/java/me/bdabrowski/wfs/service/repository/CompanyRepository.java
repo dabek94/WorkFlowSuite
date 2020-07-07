@@ -50,21 +50,40 @@ public class CompanyRepository {
         return company;
     }
     public MutableLiveData<List<JobOpenings>> getAllJobOpenings(){
-        MutableLiveData<List<JobOpenings>> company = new MutableLiveData<>();
+        MutableLiveData<List<JobOpenings>> jobs = new MutableLiveData<>();
         companyAPI.getJobOpenings().enqueue(new Callback<List<JobOpenings>>() {
             @Override
             public void onResponse(Call<List<JobOpenings>> call, Response<List<JobOpenings>> response) {
                 if(response.isSuccessful()){
-                    company.setValue(response.body());
+                    jobs.setValue(response.body());
                     return;
                 }
-                company.setValue(new ArrayList<>());
+                jobs.setValue(new ArrayList<>());
             }
             @Override
             public void onFailure(Call<List<JobOpenings>> call, Throwable t) {
-                company.setValue(null);
+                jobs.setValue(null);
             }
         });
-        return company;
-    };
+        return jobs;
+    }
+    public MutableLiveData<List<JobOpenings>> getJobOpeningsByPhrase(String phrase){
+        MutableLiveData<List<JobOpenings>> jobs = new MutableLiveData<>();
+        companyAPI.getJobOpeningsByPhrase(phrase).enqueue(new Callback<List<JobOpenings>>() {
+            @Override
+            public void onResponse(Call<List<JobOpenings>> call, Response<List<JobOpenings>> response) {
+                if(response.isSuccessful()){
+                    jobs.setValue(response.body());
+                    return;
+                }
+                jobs.setValue(new ArrayList<>());
+            }
+
+            @Override
+            public void onFailure(Call<List<JobOpenings>> call, Throwable t) {
+                jobs.setValue(null);
+            }
+        });
+        return jobs;
+    }
 }

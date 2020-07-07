@@ -38,9 +38,8 @@ public class TemporalData {
 
     private List<User> createUsers() {
         List<User> users = List.of(
-                new User("employee@pl", "employee", "Andrzej", "Andrzejowski", "employee", 5L),
-                new User("employer@pl", "employer", "Sebastian", "Sabastianski", "employer", 5L)
-
+                new User("email1@pl", "test", "Andrzej", "Andrzejowski", "employee", 5L),
+                new User("email2@pl", "test", "Sebastian", "Sabastianski", "employer", 5L)
         );
         return users;
     }
@@ -61,15 +60,15 @@ public class TemporalData {
     private List<JobOpening> createJobOpenings() {
         Random random = new Random();
         List<JobOpening> openings = List.of(
-                new JobOpening(5L, "shortDescription" + random.nextInt(), "PostionA"),
-                new JobOpening(5L, "shortDescription" + random.nextInt(), "PostionB"),
-                new JobOpening(5L, "shortDescription" + random.nextInt(), "PostionC"),
-                new JobOpening(5L, "shortDescription" + random.nextInt(), "PostionD"),
-                new JobOpening(5L, "shortDescription" + random.nextInt(), "PostionE"),
-                new JobOpening(5L, "shortDescription" + random.nextInt(), "PostionF"),
-                new JobOpening(5L, "shortDescription" + random.nextInt(), "PostionG"),
-                new JobOpening(5L, "shortDescription" + random.nextInt(), "PostionH"),
-                new JobOpening(5L, "shortDescription" + random.nextInt(), "PostionI")
+                new JobOpening( "Programista Java" , "Programista"),
+                new JobOpening( "Programista C#" , "Programista"),
+                new JobOpening( "Programista C++", "Programista"),
+                new JobOpening( "Menadzer Hotelu", "Menadzer"),
+                new JobOpening( "Kasjer", "Kasjer"),
+                new JobOpening( "Prawnik", "Prawnik"),
+                new JobOpening( "Stazysta w biurze", "Stazysta"),
+                new JobOpening( "Kasjer", "Kasjer"),
+                new JobOpening( "Pracownik magazynu", "magazyn")
         );
         return openings;
     }

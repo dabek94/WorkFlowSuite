@@ -21,6 +21,8 @@ import me.bdabrowski.wfs.service.model.User;
 
 public class RegisterFragment extends Fragment implements View.OnClickListener {
 
+    protected static final String NEW_USER_ARG = "me.bdabrowski.wfs.view.fragments.registration";
+
     private EditText mNewUserEmail, mNewUserPassword, mNewUserRePassword;
     private CheckBox mToSAgreement;
     private ProgressBar mLoadingBar;
@@ -40,14 +42,14 @@ public class RegisterFragment extends Fragment implements View.OnClickListener {
 
     private void instantiateComponents(View view) {
         //form
-        mNewUserEmail = view.findViewById(R.id.newUserEmail);
-        mNewUserPassword = view.findViewById(R.id.newUserPassword);
-        mNewUserRePassword = view.findViewById(R.id.newUserPasswordReentered);
-        mToSAgreement = view.findViewById(R.id.ToSCheck);
-        mLoadingBar = view.findViewById(R.id.loading_bar);
+        mNewUserEmail = view.findViewById(R.id.editText_register_core_email);
+        mNewUserPassword = view.findViewById(R.id.editText_register_core_password);
+        mNewUserRePassword = view.findViewById(R.id.editText_register_core_reenter_password);
+        mToSAgreement = view.findViewById(R.id.checkBox_register_core_tos);
+        mLoadingBar = view.findViewById(R.id.progressBar_register_core_loading);
 
         //action buttons
-        view.findViewById(R.id.cancel_registration).setOnClickListener(this);
+        view.findViewById(R.id.text_register_core_cancel).setOnClickListener(this);
         view.findViewById(R.id.newUserSubmit).setOnClickListener(this);
     }
 
@@ -70,20 +72,20 @@ public class RegisterFragment extends Fragment implements View.OnClickListener {
         String password = mNewUserPassword.getText().toString();
         User user = new User(email, password);
         Bundle bundle = new Bundle();
-        bundle.putSerializable("user", user);
+        bundle.putSerializable(NEW_USER_ARG, user);
         return bundle;
     }
 
     @Override
     public void onClick(View v) {
         switch(v.getId()){
-            case R.id.newUserSubmit:
+            case R.id.button_register_core_next:
                 if(isFormConditionsMet()){
                     navController.navigate(R.id.action_register_to_userPersonalInfo, createUserBundle());
                     break;
                 }
-            case R.id.cancel_registration:
-                //tood
+            case R.id.text_register_core_cancel:
+                navController.navigate(R.id.action_register_to_index);
                 break;
         }
     }

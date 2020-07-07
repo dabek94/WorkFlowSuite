@@ -9,10 +9,6 @@ import javax.swing.text.html.Option;
 import java.util.List;
 import java.util.Optional;
 
-/**
- * A repository API for Company Entity.
- * CRUD operations nn Spring Data JPARepository
- */
 public interface CompanyRepository extends JpaRepository<Company, Long> {
 
 }

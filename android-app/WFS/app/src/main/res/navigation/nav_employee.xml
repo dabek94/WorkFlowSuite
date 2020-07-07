@@ -38,14 +38,25 @@
                 app:exitAnim="@anim/slide_out_left"
                 app:popUpTo="@id/accountIndex"
                 app:popUpToInclusive="true"/>
+            <action
+                android:id="@+id/action_accountIndex_to_passwordUpdateFragment"
+                app:destination="@id/passwordUpdateFragment" />
         </fragment>
         <fragment
-            tools:layout="@layout/fragment_email_update"
+            tools:layout="@layout/fragment_update_email"
             android:id="@+id/emailUpdate"
             android:name="me.bdabrowski.wfs.view.fragments.account.EmailUpdateFragment"
             android:label="EmailUpdate" >
             <action
                 android:id="@+id/action_emailUpdate_to_accountIndex"
+                app:destination="@id/accountIndex" />
+        </fragment>
+        <fragment
+            android:id="@+id/passwordUpdateFragment"
+            android:name="me.bdabrowski.wfs.view.fragments.account.PasswordUpdateFragment"
+            android:label="PasswordUpdateFragment" >
+            <action
+                android:id="@+id/action_passwordUpdateFragment_to_accountIndex"
                 app:destination="@id/accountIndex" />
         </fragment>
     </navigation>
