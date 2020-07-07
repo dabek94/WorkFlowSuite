@@ -9,6 +9,9 @@ import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Represents Company entity
+ */
 @Entity
 @Data
 @Getter
@@ -27,10 +30,14 @@ public class Company {
     @Column()
     private String name;
 
+    /**
+     * A List of JobOpenings created by company based on company_id
+     */
     @OneToMany(cascade = CascadeType.ALL)
     private List<JobOpening> jobOpenings = new ArrayList<>();
 
-    public Company(){};
+    public Company() {
+    }
 
     //Temporal constructor
     public Company(Long owner_id, String name) {
@@ -38,7 +45,12 @@ public class Company {
         this.name = name;
     }
 
-    public void setJobOpenings(List<JobOpening> jobOpenings){
+    /**
+     * Sets the
+     *
+     * @param jobOpenings
+     */
+    public void setJobOpenings(List<JobOpening> jobOpenings) {
         this.jobOpenings = jobOpenings;
     }
 

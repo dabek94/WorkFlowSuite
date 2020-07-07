@@ -5,9 +5,9 @@
     android:id="@+id/nav_graph"
     app:startDestination="@id/index">
     <fragment
-        tools:layout="@layout/index_fragment"
+        tools:layout="@layout/fragment_index"
         android:id="@+id/index"
-        android:name="me.bdabrowski.wfs.view.fragments.Index"
+        android:name="me.bdabrowski.wfs.view.fragments.IndexFragment"
         android:label="Index" >
         <action
             android:id="@+id/action_index_to_login"
@@ -26,9 +26,9 @@
             app:exitAnim="@anim/slide_out_left"/>
     </fragment>
     <fragment
-        tools:layout="@layout/login_fragment"
+        tools:layout="@layout/fragment_login"
         android:id="@+id/login"
-        android:name="me.bdabrowski.wfs.view.fragments.Login"
+        android:name="me.bdabrowski.wfs.view.fragments.LoginFragment"
         android:label="Login" >
         <action
             android:id="@+id/action_login_to_employeeMainMenu"
@@ -40,9 +40,9 @@
             app:destination="@id/employerMainMenu" />
     </fragment>
     <fragment
-        tools:layout="@layout/register_fragment"
+        tools:layout="@layout/fragment_register_core"
         android:id="@+id/register"
-        android:name="me.bdabrowski.wfs.view.fragments.registration.Register"
+        android:name="me.bdabrowski.wfs.view.fragments.registration.RegisterFragment"
         android:label="Register" >
         <action
             android:id="@+id/action_register_to_userPersonalInfo"
@@ -54,9 +54,9 @@
 
     </fragment>
     <fragment
-        tools:layout="@layout/user_personal_info"
+        tools:layout="@layout/fragment_register_details"
         android:id="@+id/userPersonalInfo"
-        android:name="me.bdabrowski.wfs.view.fragments.registration.UserPersonalInfo"
+        android:name="me.bdabrowski.wfs.view.fragments.registration.UserDetailsFragment"
         android:label="UserPersonalInfo" >
         <action
             android:id="@+id/action_userPersonalInfo_to_accountType"
@@ -68,9 +68,9 @@
             app:argType="me.bdabrowski.wfs.service.model.User"/>
     </fragment>
     <fragment
-        tools:layout="@layout/user_type_selector"
+        tools:layout="@layout/fragment_register_account_type"
         android:id="@+id/accountType"
-        android:name="me.bdabrowski.wfs.view.fragments.registration.AccountType"
+        android:name="me.bdabrowski.wfs.view.fragments.registration.AccountTypeFragment"
         android:label="AccountType" >
         <action
             android:id="@+id/action_accountType_to_newEmployeeWelcome"
@@ -85,9 +85,9 @@
             app:argType="me.bdabrowski.wfs.service.model.User"/>
     </fragment>
     <fragment
-        tools:layout="@layout/new_user_welcome"
+        tools:layout="@layout/fragment_new_user_welcome"
         android:id="@+id/newEmployeeWelcome"
-        android:name="me.bdabrowski.wfs.view.fragments.menu.employee.NewEmployeeWelcome"
+        android:name="me.bdabrowski.wfs.view.fragments.menu.employee.NewEmployeeWelcomeFragment"
         android:label="NewEmployeeWelcome">
         <action
             android:id="@+id/action_newEmployeeWelcome_to_employerMainMenu"
@@ -97,25 +97,19 @@
             app:destination="@id/navigation4" />
     </fragment>
     <fragment
-        tools:layout="@layout/employer_menu"
+        tools:layout="@layout/fragment_employer_menu"
         android:id="@+id/employerMainMenu"
-        android:name="me.bdabrowski.wfs.view.fragments.menu.employer.EmployerMainMenu"
+        android:name="me.bdabrowski.wfs.view.fragments.menu.employer.EmployerMenuFragment"
         android:label="EmployerMainMenu" />
     <navigation android:id="@+id/navigation4"
         app:startDestination="@id/employeeMainMenu">
         <fragment
             android:id="@+id/employeeMainMenu"
-            android:name="me.bdabrowski.wfs.view.fragments.menu.employee.EmployeeMainMenu"
+            android:name="me.bdabrowski.wfs.view.fragments.menu.employee.EmployeeMenuFragment"
             android:label="EmployeeMainMenu"
-            tools:layout="@layout/employee_menu" >
-            <action
-                android:id="@+id/action_employeeMainMenu_to_accountSettings"
-                app:destination="@id/accountSettings" />
+            tools:layout="@layout/fragment_employee_menu" >
+
         </fragment>
-        <fragment
-            android:id="@+id/accountSettings"
-            android:name="me.bdabrowski.wfs.view.fragments.account.AccountContainer"
-            android:label="AccountSettings" />
     </navigation>
 
 </navigation>

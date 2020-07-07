@@ -7,23 +7,47 @@
 
     <fragment
         android:id="@+id/employee_home"
-        android:name="me.bdabrowski.wfs.view.fragments.menu.employee.EmployeeMenuBody"
+        android:name="me.bdabrowski.wfs.view.fragments.menu.employee.EmployeeHomeFragment"
         android:label="EmployeeMenuBody" >
         <action
-            android:id="@+id/action_employee_home_to_accountContainer2"
-            app:destination="@id/accountContainer2" />
+            android:id="@+id/action_employee_home_to_account"
+            app:destination="@id/navigation2"
+            app:popUpTo="@id/nav_employee" />
     </fragment>
     <fragment
         android:id="@+id/employee_jobs"
-        android:name="me.bdabrowski.wfs.view.fragments.menu.employee.EmployeeJobFinder"
+        android:name="me.bdabrowski.wfs.view.fragments.menu.employee.EmployeeJobSearchFragment"
         android:label="EmployeeJobInterest" />
     <fragment
         android:id="@+id/employee_company"
-        android:name="me.bdabrowski.wfs.view.fragments.menu.employee.EmployeeCompany"
+        android:name="me.bdabrowski.wfs.view.fragments.menu.employee.EmployeeCompanyFragment"
         android:label="EmployeeCompany" />
-    <fragment
-        android:id="@+id/accountContainer2"
-        android:name="me.bdabrowski.wfs.view.fragments.account.AccountContainer"
-        android:label="AccountContainer" />
+    <navigation android:id="@+id/navigation2"
+        app:startDestination="@id/accountIndex">
+        <fragment
+            tools:layout="@layout/fragment_account_settings"
+            android:id="@+id/accountIndex"
+            android:name="me.bdabrowski.wfs.view.fragments.account.AccountMenuFragment"
+            android:label="AccountIndex" >
+            <action
+                android:id="@+id/action_accountIndex_to_emailUpdate"
+                app:destination="@id/emailUpdate"
+                app:popEnterAnim="@anim/slide_in_left"
+                app:popExitAnim="@anim/slide_out_right"
+                app:enterAnim="@anim/slide_in_right"
+                app:exitAnim="@anim/slide_out_left"
+                app:popUpTo="@id/accountIndex"
+                app:popUpToInclusive="true"/>
+        </fragment>
+        <fragment
+            tools:layout="@layout/fragment_email_update"
+            android:id="@+id/emailUpdate"
+            android:name="me.bdabrowski.wfs.view.fragments.account.EmailUpdateFragment"
+            android:label="EmailUpdate" >
+            <action
+                android:id="@+id/action_emailUpdate_to_accountIndex"
+                app:destination="@id/accountIndex" />
+        </fragment>
+    </navigation>
 
 </navigation>

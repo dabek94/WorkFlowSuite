@@ -8,6 +8,9 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
+/**
+ * Represents address information's for User and Company Entity
+ */
 @Entity
 @Getter
 @Setter
@@ -23,12 +26,15 @@ public class Address {
     private String ZipCode;
 
 
-    public Address () {};
+    public Address() {
+    }
+
+    ;
 
     /*
             TEMPORARY CONSTROCTOR USED IN TEMPORARLDATA CLASS, WILL BE REMOVE IN PRODUCTIOn
      */
-    public Address(String street,String city, String state, String country, String zipCode) {
+    public Address(String street, String city, String state, String country, String zipCode) {
         this.street = street;
         this.city = city;
         this.state = state;

@@ -4,6 +4,9 @@ import lombok.*;
 
 import javax.persistence.*;
 
+/**
+ * Represents the user entity
+ */
 @Entity
 @Data
 @Getter
@@ -38,7 +41,6 @@ public class User {
     @OneToOne(cascade = CascadeType.ALL)
     Address address = new Address();
 
-
     /*
             TEMPORARY CONSTROCTOR USED IN TEMPORARLDATA CLASS, WILL BE REMOVE IN PRODUCTION
      */
@@ -51,7 +53,7 @@ public class User {
         this.companyId = companyId;
     }
 
-    public void setAddress(Address address){
+    public void setAddress(Address address) {
         this.address = address;
     }
 }

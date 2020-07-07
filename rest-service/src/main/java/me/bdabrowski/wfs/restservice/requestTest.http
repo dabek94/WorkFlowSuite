@@ -8,11 +8,11 @@ POST {{host-url}}/users
 Content-Type: application/json
 
 {
-  "email": "testaasdsd@pl",
-  "password": "test",
-  "firstName": "test124",
-  "lastName": "test42",
-  "userType": "asdasdasd"
+  "email": "test@pl",
+  "password": "s3cret",
+  "firstName": "RequestName",
+  "lastName": "RequestLastName",
+  "userType": "Test-User"
 }
 
 ###
@@ -21,3 +21,17 @@ GET {{host-url}}/companies/5
 
 GET {{host-url}}/jobs
 
+###
+DELETE {{host-url}}/users/delete/1
+###
+
+###
+POST {{host-url}}/jobs
+Content-Type: application/json
+
+{
+    "companyId": "1",
+    "position": "test position",
+    "shortDescription":"simple job 2"
+}
+###

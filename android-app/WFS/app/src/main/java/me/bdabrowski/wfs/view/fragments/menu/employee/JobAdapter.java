@@ -7,14 +7,12 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
-import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.List;
 
 import me.bdabrowski.wfs.R;
 import me.bdabrowski.wfs.service.model.Company;
-import me.bdabrowski.wfs.viewmodel.CompanyViewModel;
 
 public class JobAdapter extends RecyclerView.Adapter<JobAdapter.ViewHolder> {
 
@@ -29,7 +27,7 @@ public class JobAdapter extends RecyclerView.Adapter<JobAdapter.ViewHolder> {
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = layoutInflater.inflate(R.layout.job_item,parent, false);
+        View view = layoutInflater.inflate(R.layout.item_cardview_job,parent, false);
         return new ViewHolder(view);
     }
 

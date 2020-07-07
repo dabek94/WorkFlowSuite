@@ -28,14 +28,12 @@ public class TemporalData {
                 createUsers()) {
             user.setAddress(createAddresses());
             userRepository.save(user);
-        }
+         }
         for (Company company :
                 createCompanies()) {
             company.setJobOpenings(createJobOpenings());
             companyRepository.save(company);
         }
-
-
     }
 
     private List<User> createUsers() {
@@ -72,8 +70,7 @@ public class TemporalData {
                 new JobOpening(5L, "shortDescription" + random.nextInt(), "PostionG"),
                 new JobOpening(5L, "shortDescription" + random.nextInt(), "PostionH"),
                 new JobOpening(5L, "shortDescription" + random.nextInt(), "PostionI")
-
-                );
+        );
         return openings;
     }
 }

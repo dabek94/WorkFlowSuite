@@ -10,11 +10,11 @@ import {Address} from '../model/Address';
 })
 export class UserService {
 
-  private BASE_URL = 'http://192.168.0.136:8080/users/';
+  private BASE_URL = 'http://192.168.43.52:8080/users/';
   // TODO Implement ${BASE_URL/path}, the injection doesnt work for some reason
-  private UPDATE_EMAIL_URL = 'http://192.168.0.136:8080/users/update/email/';
-  private UPDATE_PASSWORD_URL = 'http://192.168.0.136:8080/users/update/password/';
-  private UPDATE_ADDRESS_URL = 'http://192.168.0.136:8080/users/update/address/';
+  private UPDATE_EMAIL_URL = 'http://192.168.43.52:8080/users/update/email/';
+  private UPDATE_PASSWORD_URL = 'http://192.168.43.52:8080/users/update/password/';
+  private UPDATE_ADDRESS_URL = 'http://192.168.43.52:8080/users/update/address/';
 
   constructor(private http: HttpClient) { }
 

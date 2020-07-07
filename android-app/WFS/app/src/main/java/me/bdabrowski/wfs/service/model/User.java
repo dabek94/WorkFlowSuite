@@ -6,6 +6,9 @@ import java.io.Serializable;
 import java.lang.reflect.Field;
 import java.util.stream.Stream;
 
+/**
+ * User model class based on Restful service documentation
+ */
 public class User implements Serializable {
 
     private Long id;

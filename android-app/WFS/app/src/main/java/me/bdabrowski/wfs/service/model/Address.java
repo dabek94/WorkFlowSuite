@@ -3,6 +3,9 @@ package me.bdabrowski.wfs.service.model;
 import java.util.Objects;
 import java.util.stream.Stream;
 
+/**
+ * Address model class based on Restful service documentation
+ */
 public class Address {
     private String street;
     private String state;
