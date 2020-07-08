@@ -24,6 +24,21 @@ public class UserController {
     @Autowired
     UserRepository userRepository;
 
+
+
+    @GetMapping("{companyId}")
+    public ResponseEntity<List<User>> selectUsersByCompanyId(@PathVariable(value = "companyId") Long companyId) {
+        return userRepository.getUsersByCompanyId(companyId)
+                .map(users -> ResponseEntity.ok().body(users))
+                .orElse(ResponseEntity.notFound().build());
+    }
+    @GetMapping("duplicate/{email}")
+    public ResponseEntity<Boolean> doesUserWithGivenEmailExist(@PathVariable(value = "email") String email){
+        return userRepository.getUserByEmail(email)
+                .map(user -> ResponseEntity.ok().body(true))
+                .orElse(ResponseEntity.notFound().build());
+    }
+
     @PostMapping("/{email}/{password}")
     public ResponseEntity<User> selectByEmailAndPassword(@PathVariable(value = "email") String email,
                                                          @PathVariable(value = "password") String password) {
@@ -32,14 +47,6 @@ public class UserController {
                 .map(user -> ResponseEntity.ok().body(user))
                 .orElse(ResponseEntity.notFound().build());
     }
-
-    @GetMapping("{companyId}")
-    public ResponseEntity<List<User>> selectUsersByCompanyId(@PathVariable(value = "companyId") Long companyId) {
-        return userRepository.getUsersByCompanyId(companyId)
-                .map(users -> ResponseEntity.ok().body(users))
-                .orElse(ResponseEntity.notFound().build());
-    }
-
     @PostMapping()
     public ResponseEntity<User> createUser(@RequestBody User user) {
         try {

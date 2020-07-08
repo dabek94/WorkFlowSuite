@@ -36,14 +36,12 @@ public class EmployeeMenuFragment extends Fragment{
         userViewModel = new ViewModelProvider(getActivity()).get(UserViewModel.class);
         menuBinding = DataBindingUtil.inflate(inflater, R.layout.fragment_employee_menu, container, false);
         menuBinding.setUser(userViewModel.getUser().getValue());
-
         return menuBinding.getRoot();
     }
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-
         navController = Navigation.findNavController(view.findViewById(R.id.nav_body_employee));
         bottomNavigationView = view.findViewById(R.id.bottom_navigation_employee);
         NavigationUI.setupWithNavController(bottomNavigationView, navController);

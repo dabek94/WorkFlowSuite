@@ -51,8 +51,16 @@
     <string name="job_field">Search for jobs</string>
 
     <!-- EMPLOYER -->
+
+    <!-- Company -->
     <string name="employer_company_none">
         You don\'t have registered company yet. \n\nTo register your company click on the button below
     </string>
-    <string name="action_register_comapny">Register Company</string>
+    <string name="company_creator_welcome">
+        Welcome to the company creator. \n\nIn the next guided steps you will create your company
+        along with the modules for it. Press the button below to begin.
+    </string>
+    <string name="begin_btn">Begin</string>
+
+    <string name="action_register_company">Register Company</string>
 </resources>

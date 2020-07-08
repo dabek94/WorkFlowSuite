@@ -18,6 +18,12 @@ public class UserViewModel extends ViewModel {
             return;
         }
         userRepository = UserRepository.getInstance();
+        mApplicationUser = new MutableLiveData<>();
+        mApplicationUser.setValue(new User());
+    }
+
+    public LiveData<Boolean> isEmailDuplicate(String email){
+        return userRepository.isEmailDuplicate(email);
     }
 
     //get user from MutableLiveData object

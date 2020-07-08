@@ -1,5 +1,6 @@
 package me.bdabrowski.wfs.view.fragments.menu.employer.company;
 
+import android.annotation.SuppressLint;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -34,7 +35,7 @@ public class EmployerCompanyFragment extends Fragment implements View.OnClickLis
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         navController = Navigation.findNavController(view);
-        view.findViewById(R.id.button_employer_company_create).setOnClickListener(this);
+        setClickListener(view);
     }
 
     private int createCompanyViewId(User user) {
@@ -42,6 +43,16 @@ public class EmployerCompanyFragment extends Fragment implements View.OnClickLis
             return R.layout.fragment_employer_company;
         } else {
             return R.layout.fragment_employer_company_none;
+        }
+    }
+
+    private void setClickListener(View view){
+        int viewId = createCompanyViewId(userViewModel.getUser().getValue());
+
+        if(viewId == R.layout.fragment_employer_company_none){
+            view.findViewById(R.id.button_employer_company_create).setOnClickListener(this);
+        } else {
+
         }
     }
 

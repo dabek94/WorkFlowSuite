@@ -13,14 +13,17 @@ import retrofit2.http.Path;
 
 public interface UserAPI {
 
+    @GET("users/duplicate/{email}")
+    Call<Boolean> isEmailDuplicate(@Path("email") String email);
+
     @POST("users/")
     Call<User> createUser(@Body User user);
 
     @POST("users/{email}/{password}")
     Call<User> getUser(@Path("email") String email, @Path("password") String password);
 
-    @POST("users/{companyUUID}")
-    Call<List<User>> getUsersByCompanyUUID(@Path("companyUUID")UUID uuid);
+    @POST("users/{companyId}")
+    Call<List<User>> getUsersByCompanyUUID(@Path("companyId")UUID uuid);
 
     @GET("users/delete")
     Call<User> deleteUser(@Body User user);

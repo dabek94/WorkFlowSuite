@@ -16,4 +16,5 @@ public interface UserRepository extends JpaRepository<User, Long> {
             "where u.company.companyId=?1")
     Optional<List<User>> getUsersByCompanyId(Long companyId);
 
+    Optional<User> getUserByEmail(String email);
 }

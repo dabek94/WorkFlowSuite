@@ -46,6 +46,28 @@ public class UserRepository {
         return user;
     }
 
+    public MutableLiveData<Boolean> isEmailDuplicate(@NotNull String email){
+        MutableLiveData<Boolean> isDuplicate = new MutableLiveData<>();
+        userAPI.isEmailDuplicate(email).enqueue(new Callback<Boolean>() {
+            @Override
+            public void onResponse(Call<Boolean> call, Response<Boolean> response) {
+                if(response.isSuccessful()){
+                    isDuplicate.setValue(response.body());
+                    return;
+                }
+                else {
+                    isDuplicate.setValue(new Boolean(false));
+                    return;
+                }
+            }
+            @Override
+            public void onFailure(Call<Boolean> call, Throwable t) {
+                isDuplicate.setValue(null);
+            }
+        });
+        return isDuplicate;
+    }
+
     public MutableLiveData<User> createUser(@NotNull User newUser) {
         MutableLiveData<User> user = new MutableLiveData<>();
         userAPI.createUser(newUser).enqueue(new Callback<User>() {
