@@ -7,14 +7,14 @@ import androidx.lifecycle.ViewModel;
 import java.util.List;
 
 import me.bdabrowski.wfs.service.model.Company;
-import me.bdabrowski.wfs.service.model.Company.JobOpenings;
+import me.bdabrowski.wfs.service.model.JobOpening;
 import me.bdabrowski.wfs.service.repository.CompanyRepository;
 import me.bdabrowski.wfs.service.repository.UserRepository;
 
 public class CompanyViewModel extends ViewModel {
 
     private MutableLiveData<Company> userCompany;
-    private MutableLiveData<List<JobOpenings>> jobOpenings;
+    private MutableLiveData<List<JobOpening>> jobOpenings;
 
     private CompanyRepository companyRepository;
     private MutableLiveData<Boolean> mIsUpdating = new MutableLiveData<>();
@@ -37,11 +37,11 @@ public class CompanyViewModel extends ViewModel {
         return userCompany;
     }
 
-    public LiveData<List<JobOpenings>> getJobOpenings(){
+    public LiveData<List<JobOpening>> getJobOpenings(){
         jobOpenings = companyRepository.getAllJobOpenings();
         return jobOpenings;
     }
-    public LiveData<List<JobOpenings>> getJobOpeningsByPhrase(String phrase){
+    public LiveData<List<JobOpening>> getJobOpeningsByPhrase(String phrase){
         jobOpenings = companyRepository.getJobOpeningsByPhrase(phrase);
         return jobOpenings;
     }

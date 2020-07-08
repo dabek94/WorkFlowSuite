@@ -11,7 +11,7 @@ public class Company {
     private Long id;
     private Long ownerId;
     private String name;
-    private List<JobOpenings> jobOpenings;
+    private List<JobOpening> jobOpenings;
 
     public Company() {
 
@@ -40,38 +40,12 @@ public class Company {
         this.name = name;
     }
 
-
-    public List<JobOpenings> getJobOpenings() {
+    public List<JobOpening> getJobOpenings() {
         return jobOpenings;
     }
 
-    public void setJobOpenings(List<JobOpenings> jobOpenings) {
+    public void setJobOpenings(List<JobOpening> jobOpenings) {
         this.jobOpenings = jobOpenings;
     }
 
-    public JobOpenings getFirst(){
-        return this.jobOpenings.get(0);
-    }
-
-    public class JobOpenings{
-
-        private String shortDescription;
-        private String position;
-        public JobOpenings(){}
-
-        public String getShortDescription() {
-            return shortDescription;
-        }
-        public void setShortDescription(String shortDescription) {
-            this.shortDescription = shortDescription;
-        }
-
-        public String getPosition() {
-            return position;
-        }
-
-        public void setPosition(String position) {
-            this.position = position;
-        }
-    }
 }

@@ -23,7 +23,7 @@ import me.bdabrowski.wfs.viewmodel.UserViewModel;
 public class EmployeeMenuFragment extends Fragment{
 
     private UserViewModel userViewModel;
-    private FragmentEmployeeMenuBinding employeeMenuBinding;
+    private FragmentEmployeeMenuBinding menuBinding;
     private BottomNavigationView bottomNavigationView;
 
     private NavController navController;
@@ -34,22 +34,18 @@ public class EmployeeMenuFragment extends Fragment{
                              @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
         userViewModel = new ViewModelProvider(getActivity()).get(UserViewModel.class);
+        menuBinding = DataBindingUtil.inflate(inflater, R.layout.fragment_employee_menu, container, false);
+        menuBinding.setUser(userViewModel.getUser().getValue());
 
-        employeeMenuBinding = DataBindingUtil.inflate(inflater, R.layout.fragment_employee_menu, container, false);
-        employeeMenuBinding.setUser(userViewModel.getUser().getValue());
-
-        View view = employeeMenuBinding.getRoot();
-        //profile icon
-
-        return view;
+        return menuBinding.getRoot();
     }
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        navController = Navigation.findNavController(view.findViewById(R.id.menu_body_nav));
-        bottomNavigationView = view.findViewById(R.id.employee_menu_bottom_navigation);
+        navController = Navigation.findNavController(view.findViewById(R.id.nav_body_employee));
+        bottomNavigationView = view.findViewById(R.id.bottom_navigation_employee);
         NavigationUI.setupWithNavController(bottomNavigationView, navController);
 
     }

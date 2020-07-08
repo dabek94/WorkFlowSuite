@@ -3,9 +3,7 @@ package me.bdabrowski.wfs.restservice;
 import me.bdabrowski.wfs.restservice.model.Address;
 import me.bdabrowski.wfs.restservice.model.User;
 import me.bdabrowski.wfs.restservice.repository.UserRepository;
-import org.junit.Assert;
 import org.junit.Before;
-import org.junit.BeforeClass;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,8 +11,6 @@ import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabas
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
-import javax.swing.text.html.Option;
-import java.util.List;
 import java.util.Optional;
 
 import static org.junit.Assert.*;
@@ -32,13 +28,13 @@ public class UserRepositoryTest {
     @Before
     public void userSetUp(){
         user = new User( "test@pl",  "s3cret",  "John",
-                "Smith", "employee",  1L );
+                "Smith", "employee");
     }
 
     @Test
     public void saveUserThenGetUserByEmailAndPasswordShouldHaveMatchingEmails(){
         userRepository.save(user);
-        Optional<User> optionalUser = userRepository.getByEmailAndPassword(user.getEmail(), user.getPassword());
+        Optional<User> optionalUser = userRepository.getUserByEmailAndPassword(user.getEmail(), user.getPassword());
         User dataUser = new User();
         if(optionalUser.isPresent()){
             dataUser = optionalUser.get();

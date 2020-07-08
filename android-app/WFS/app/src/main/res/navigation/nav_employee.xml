@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/employee_home"
-        android:name="me.bdabrowski.wfs.view.fragments.menu.employee.EmployeeHomeFragment"
+        android:name="me.bdabrowski.wfs.view.fragments.menu.employee.home.EmployeeHomeFragment"
         android:label="EmployeeMenuBody" >
         <action
             android:id="@+id/action_employee_home_to_account"
@@ -16,11 +16,11 @@
     </fragment>
     <fragment
         android:id="@+id/employee_jobs"
-        android:name="me.bdabrowski.wfs.view.fragments.menu.employee.EmployeeJobSearchFragment"
+        android:name="me.bdabrowski.wfs.view.fragments.menu.employee.job.EmployeeJobSearchFragment"
         android:label="EmployeeJobInterest" />
     <fragment
         android:id="@+id/employee_company"
-        android:name="me.bdabrowski.wfs.view.fragments.menu.employee.EmployeeCompanyFragment"
+        android:name="me.bdabrowski.wfs.view.fragments.menu.employee.company.EmployeeCompanyFragment"
         android:label="EmployeeCompany" />
     <navigation android:id="@+id/navigation2"
         app:startDestination="@id/accountIndex">

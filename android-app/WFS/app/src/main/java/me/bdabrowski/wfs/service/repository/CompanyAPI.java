@@ -3,6 +3,7 @@ package me.bdabrowski.wfs.service.repository;
 import java.util.List;
 
 import me.bdabrowski.wfs.service.model.Company;
+import me.bdabrowski.wfs.service.model.JobOpening;
 import retrofit2.Call;
 import retrofit2.http.Body;
 import retrofit2.http.GET;
@@ -21,9 +22,9 @@ public interface CompanyAPI {
     Call<Boolean> createCompany(@Body Company company);
 
     @GET("jobs/")
-    Call<List<Company.JobOpenings>> getJobOpenings();
+    Call<List<JobOpening>> getJobOpenings();
 
     @GET("jobs/{phrase}")
-    Call<List<Company.JobOpenings>> getJobOpeningsByPhrase(@Path("phrase") String phrase);
+    Call<List<JobOpening>> getJobOpeningsByPhrase(@Path("phrase") String phrase);
 
 }

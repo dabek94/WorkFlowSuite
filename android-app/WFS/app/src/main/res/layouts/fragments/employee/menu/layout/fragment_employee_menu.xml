@@ -16,7 +16,7 @@
 
 
         <fragment
-            android:id="@+id/menu_body_nav"
+            android:id="@+id/nav_body_employee"
             android:name="androidx.navigation.fragment.NavHostFragment"
             android:layout_width="0dp"
             android:layout_height="0dp"
@@ -27,13 +27,13 @@
             app:navGraph="@navigation/nav_employee" />
 
         <com.google.android.material.bottomnavigation.BottomNavigationView
-            android:id="@+id/employee_menu_bottom_navigation"
+            android:id="@+id/bottom_navigation_employee"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             app:itemBackground="@color/cardview_light_background"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:menu="@menu/employee_menu_navigation" />
+            app:menu="@menu/menu_navigation_employee" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

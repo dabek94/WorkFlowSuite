@@ -17,6 +17,8 @@ import me.bdabrowski.wfs.R;
 import me.bdabrowski.wfs.service.model.Address;
 import me.bdabrowski.wfs.service.model.User;
 
+import static me.bdabrowski.wfs.view.fragments.registration.RegisterFragment.NEW_USER_ARG;
+
 public class UserDetailsFragment extends Fragment implements View.OnClickListener {
 
     private EditText mFirstName, mLastName, mStreet, mCity;
@@ -49,7 +51,7 @@ public class UserDetailsFragment extends Fragment implements View.OnClickListene
     }
 
     private Bundle createUserBundle(){
-        User user = (User) getArguments().get("user");
+        User user = (User) getArguments().get(NEW_USER_ARG);
         user.setFirstName(mFirstName.getText().toString());
         user.setLastName(mLastName.getText().toString());
         Address _address = new Address();
@@ -58,7 +60,7 @@ public class UserDetailsFragment extends Fragment implements View.OnClickListene
         user.setAddress(_address);
 
         Bundle bundle = new Bundle();
-        bundle.putSerializable("user", user);
+        bundle.putSerializable(NEW_USER_ARG, user);
         return bundle;
     }
 }

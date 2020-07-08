@@ -37,7 +37,9 @@
             app:popUpToInclusive="true"/>
         <action
             android:id="@+id/action_login_to_employerMainMenu"
-            app:destination="@id/employerMainMenu" />
+            app:destination="@id/navigation3"
+            app:popUpTo="@id/nav_graph"
+            app:popUpToInclusive="true" />
     </fragment>
     <fragment
         tools:layout="@layout/fragment_register_core"
@@ -86,24 +88,21 @@
             app:popUpToInclusive="true"/>
         <argument android:name="user"
             app:argType="me.bdabrowski.wfs.service.model.User"/>
+        <action
+            android:id="@+id/action_accountType_to_newEmployerFragment"
+            app:destination="@id/newEmployerFragment"
+            app:popUpTo="@id/nav_graph"
+            app:popUpToInclusive="true" />
     </fragment>
     <fragment
-        tools:layout="@layout/fragment_new_user_welcome"
+        tools:layout="@layout/fragment_new_employee"
         android:id="@+id/newEmployeeWelcome"
-        android:name="me.bdabrowski.wfs.view.fragments.menu.employee.NewEmployeeWelcomeFragment"
+        android:name="me.bdabrowski.wfs.view.fragments.menu.employee.NewEmployeeFragment"
         android:label="NewEmployeeWelcome">
-        <action
-            android:id="@+id/action_newEmployeeWelcome_to_employerMainMenu"
-            app:destination="@id/employerMainMenu" />
         <action
             android:id="@+id/action_newEmployeeWelcome_to_employeeMainMenu"
             app:destination="@id/navigation4" />
     </fragment>
-    <fragment
-        tools:layout="@layout/fragment_employer_menu"
-        android:id="@+id/employerMainMenu"
-        android:name="me.bdabrowski.wfs.view.fragments.menu.employer.EmployerMenuFragment"
-        android:label="EmployerMainMenu" />
     <navigation android:id="@+id/navigation4"
         app:startDestination="@id/employeeMainMenu">
         <fragment
@@ -113,6 +112,21 @@
             tools:layout="@layout/fragment_employee_menu" >
 
         </fragment>
+    </navigation>
+    <fragment
+        android:id="@+id/newEmployerFragment"
+        android:name="me.bdabrowski.wfs.view.fragments.menu.employer.NewEmployerFragment"
+        android:label="NewEmployerFragment" >
+        <action
+            android:id="@+id/action_newEmployerFragment_to_employerMenuFragment"
+            app:destination="@id/navigation3" />
+    </fragment>
+    <navigation android:id="@+id/navigation3"
+        app:startDestination="@id/employerMenuFragment">
+        <fragment
+            android:id="@+id/employerMenuFragment"
+            android:name="me.bdabrowski.wfs.view.fragments.menu.employer.EmployerMenuFragment"
+            android:label="EmployerMenuFragment" />
     </navigation>
 
 </navigation>

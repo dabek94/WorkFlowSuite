@@ -8,7 +8,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import me.bdabrowski.wfs.service.model.Company;
-import me.bdabrowski.wfs.service.model.Company.JobOpenings;
+import me.bdabrowski.wfs.service.model.JobOpening;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -49,11 +49,11 @@ public class CompanyRepository {
         });
         return company;
     }
-    public MutableLiveData<List<JobOpenings>> getAllJobOpenings(){
-        MutableLiveData<List<JobOpenings>> jobs = new MutableLiveData<>();
-        companyAPI.getJobOpenings().enqueue(new Callback<List<JobOpenings>>() {
+    public MutableLiveData<List<JobOpening>> getAllJobOpenings(){
+        MutableLiveData<List<JobOpening>> jobs = new MutableLiveData<>();
+        companyAPI.getJobOpenings().enqueue(new Callback<List<JobOpening>>() {
             @Override
-            public void onResponse(Call<List<JobOpenings>> call, Response<List<JobOpenings>> response) {
+            public void onResponse(Call<List<JobOpening>> call, Response<List<JobOpening>> response) {
                 if(response.isSuccessful()){
                     jobs.setValue(response.body());
                     return;
@@ -61,17 +61,17 @@ public class CompanyRepository {
                 jobs.setValue(new ArrayList<>());
             }
             @Override
-            public void onFailure(Call<List<JobOpenings>> call, Throwable t) {
+            public void onFailure(Call<List<JobOpening>> call, Throwable t) {
                 jobs.setValue(null);
             }
         });
         return jobs;
     }
-    public MutableLiveData<List<JobOpenings>> getJobOpeningsByPhrase(String phrase){
-        MutableLiveData<List<JobOpenings>> jobs = new MutableLiveData<>();
-        companyAPI.getJobOpeningsByPhrase(phrase).enqueue(new Callback<List<JobOpenings>>() {
+    public MutableLiveData<List<JobOpening>> getJobOpeningsByPhrase(String phrase){
+        MutableLiveData<List<JobOpening>> jobs = new MutableLiveData<>();
+        companyAPI.getJobOpeningsByPhrase(phrase).enqueue(new Callback<List<JobOpening>>() {
             @Override
-            public void onResponse(Call<List<JobOpenings>> call, Response<List<JobOpenings>> response) {
+            public void onResponse(Call<List<JobOpening>> call, Response<List<JobOpening>> response) {
                 if(response.isSuccessful()){
                     jobs.setValue(response.body());
                     return;
@@ -80,7 +80,7 @@ public class CompanyRepository {
             }
 
             @Override
-            public void onFailure(Call<List<JobOpenings>> call, Throwable t) {
+            public void onFailure(Call<List<JobOpening>> call, Throwable t) {
                 jobs.setValue(null);
             }
         });

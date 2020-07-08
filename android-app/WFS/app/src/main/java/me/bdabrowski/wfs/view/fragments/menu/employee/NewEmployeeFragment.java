@@ -4,7 +4,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageButton;
+import android.widget.Button;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -15,36 +15,37 @@ import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 
 import me.bdabrowski.wfs.R;
-import me.bdabrowski.wfs.databinding.FragmentBtmNavEmployeeHomeBinding;
+import me.bdabrowski.wfs.databinding.FragmentNewEmployeeBinding;
+import me.bdabrowski.wfs.service.model.User;
 import me.bdabrowski.wfs.viewmodel.UserViewModel;
 
-public class EmployeeHomeFragment extends Fragment {
+public class NewEmployeeFragment extends Fragment implements View.OnClickListener {
 
-
-    private UserViewModel userViewModel;
-    private FragmentBtmNavEmployeeHomeBinding employeeMenuBodyBinding;
-    private ImageButton profilePicture;
-    private NavController navController;
+    UserViewModel userViewModel;
+    FragmentNewEmployeeBinding newEmployeeBinding;
+    NavController navController;
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         userViewModel = new ViewModelProvider(getActivity()).get(UserViewModel.class);
-        employeeMenuBodyBinding = DataBindingUtil.inflate(inflater, R.layout.fragment_btm_nav_employee_home, container, false);
-        employeeMenuBodyBinding.setUser(userViewModel.getUser().getValue());
-
-
-        View view = employeeMenuBodyBinding.getRoot();
+        newEmployeeBinding = DataBindingUtil.inflate(inflater, R.layout.fragment_new_employee, container, false);
+        User _user = userViewModel.getUser().getValue();
+        newEmployeeBinding.setUser(_user);
+        View view = newEmployeeBinding.getRoot();
+        view.findViewById(R.id.welcome_submit).setOnClickListener(this);
         return view;
     }
+
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         navController = Navigation.findNavController(view);
-        profilePicture = view.findViewById(R.id.profile_picture);
-        profilePicture.setOnClickListener(v -> {
-            navController.navigate(R.id.action_employee_home_to_account);
-        });
+    }
+
+    @Override
+    public void onClick(View v) {
+        navController.navigate(R.id.action_newEmployeeWelcome_to_employeeMainMenu);
     }
 }

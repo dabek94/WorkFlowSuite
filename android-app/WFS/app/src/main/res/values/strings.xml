@@ -49,4 +49,10 @@
         viverra. Tincidunt lobortis feugiat vivamus at augue eget. </string>
     <!-- EMPLOYEE -->
     <string name="job_field">Search for jobs</string>
+
+    <!-- EMPLOYER -->
+    <string name="employer_company_none">
+        You don\'t have registered company yet. \n\nTo register your company click on the button below
+    </string>
+    <string name="action_register_comapny">Register Company</string>
 </resources>

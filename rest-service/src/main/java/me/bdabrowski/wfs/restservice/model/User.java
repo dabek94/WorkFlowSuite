@@ -1,5 +1,7 @@
 package me.bdabrowski.wfs.restservice.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.*;
 
 import javax.persistence.*;
@@ -32,8 +34,9 @@ public class User {
     @Column()
     private String userType = "null";
 
-    @Column()
-    private Long companyId = 0L;
+    @ManyToOne()
+    @JsonIgnoreProperties({"jobOpenings","employees"})
+    private Company company;
 
     @OneToOne(cascade = CascadeType.ALL)
     Address address = new Address();
@@ -41,16 +44,32 @@ public class User {
     /*
             TEMPORARY CONSTROCTOR USED IN TEMPORARLDATA CLASS, WILL BE REMOVE IN PRODUCTION
      */
-    public User(String email, String password, String firstName, String lastName, String userType, Long companyId) {
+    public User(String email, String password, String firstName, String lastName, String userType) {
         this.email = email;
         this.password = password;
         this.firstName = firstName;
         this.lastName = lastName;
         this.userType = userType;
-        this.companyId = companyId;
     }
 
     public void setAddress(Address address) {
         this.address = address;
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o)
+            return true;
+        if (!(o instanceof JobOpening))
+            return false;
+        return
+                id != null &&
+                        id.equals(((JobOpening) o).getId());
+    }
+
+    @Override
+    public int hashCode() {
+        return 31;
+    }
+
 }

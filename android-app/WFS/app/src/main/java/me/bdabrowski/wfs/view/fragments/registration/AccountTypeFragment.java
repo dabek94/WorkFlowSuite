@@ -17,12 +17,14 @@ import me.bdabrowski.wfs.R;
 import me.bdabrowski.wfs.service.model.User;
 import me.bdabrowski.wfs.viewmodel.UserViewModel;
 
+import static me.bdabrowski.wfs.view.fragments.registration.RegisterFragment.NEW_USER_ARG;
+
 public class AccountTypeFragment extends Fragment implements View.OnClickListener {
 
     private UserViewModel userViewModel;
     private NavController navController;
 
-    private User userBundleArg;
+    private User newUser;
 
     @Nullable
     @Override
@@ -34,7 +36,7 @@ public class AccountTypeFragment extends Fragment implements View.OnClickListene
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        userBundleArg = (User) getArguments().getSerializable("user");
+        newUser = (User) getArguments().getSerializable(NEW_USER_ARG);
         navController = Navigation.findNavController(view);
         userViewModel = new ViewModelProvider(getActivity()).get(UserViewModel.class);
 
@@ -45,18 +47,18 @@ public class AccountTypeFragment extends Fragment implements View.OnClickListene
     @Override
     public void onClick(View v) {
         switch (v.getId()){
-            case R.id.registerAsEmployer:
-                userBundleArg.setUserType("employer");
-                userBundleArg.setCompanyId(0L);
-                break;
             case R.id.registerAsEmployee:
-                //TODO Work on owner will start after user is finished
-                userBundleArg.setUserType("employee");
-                userBundleArg.setCompanyId(0L);
+                newUser.setUserType("employee");
+                userViewModel.addNewUser(newUser).observe(getActivity(), user -> {
+                    navController.navigate(R.id.action_accountType_to_newEmployeeWelcome);
+                });
+                break;
+            case R.id.registerAsEmployer:
+                newUser.setUserType("employer");
+                userViewModel.addNewUser(newUser).observe(getActivity(), user -> {
+                    navController.navigate(R.id.action_accountType_to_newEmployerFragment);
+                });
                 break;
         }
-        userViewModel.addNewUser(userBundleArg).observe(getActivity(), user -> {
-            navController.navigate(R.id.action_accountType_to_newEmployeeWelcome);
-        });
     }
 }

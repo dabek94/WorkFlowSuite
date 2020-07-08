@@ -1,4 +1,4 @@
-package me.bdabrowski.wfs.view.fragments.menu.employee;
+package me.bdabrowski.wfs.view.fragments.menu.employee.job;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -12,17 +12,15 @@ import androidx.recyclerview.widget.RecyclerView;
 import java.util.List;
 
 import me.bdabrowski.wfs.R;
-import me.bdabrowski.wfs.service.model.Company;
-import me.bdabrowski.wfs.view.activity.MainActivity;
-import me.bdabrowski.wfs.viewmodel.CompanyViewModel;
+import me.bdabrowski.wfs.service.model.JobOpening;
 
 public class JobAdapter extends RecyclerView.Adapter<JobAdapter.ViewHolder> {
 
     private LayoutInflater layoutInflater;
-    private List<Company.JobOpenings> jobOpenings;
+    private List<JobOpening> jobOpenings;
 
 
-    public JobAdapter(Context context, List<Company.JobOpenings> jobOpenings){
+    public JobAdapter(Context context, List<JobOpening> jobOpenings){
         this.layoutInflater = LayoutInflater.from(context);
         this.jobOpenings = jobOpenings;
     }
@@ -47,7 +45,7 @@ public class JobAdapter extends RecyclerView.Adapter<JobAdapter.ViewHolder> {
         return jobOpenings.size();
     }
 
-    public void setItems(List<Company.JobOpenings> jobs){
+    public void setItems(List<JobOpening> jobs){
         this.jobOpenings = jobs;
     }
 

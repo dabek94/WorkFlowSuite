@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_employer"
+    app:startDestination="@id/employer_home">
+
+    <fragment
+        android:id="@+id/employer_home"
+        android:name="me.bdabrowski.wfs.view.fragments.menu.employer.home.EmployerHomeFragment"
+        android:label="EmployerHome" />
+    <fragment
+        android:id="@+id/employer_jobs"
+        android:name="me.bdabrowski.wfs.view.fragments.menu.employer.job.EmployerJob"
+        android:label="EmployerJobs" />
+    <fragment
+        android:id="@+id/employer_company"
+        android:name="me.bdabrowski.wfs.view.fragments.menu.employer.company.EmployerCompanyFragment"
+        android:label="EmployerCompany"
+        >
+        <action
+            android:id="@+id/action_employer_company_to_companyCreatorFragment"
+            app:destination="@id/companyCreatorFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/companyCreatorFragment"
+        android:name="me.bdabrowski.wfs.view.fragments.menu.employer.company.CompanyCreatorFragment"
+        android:label="CompanyCreatorFragment" />
+    w
+</navigation>

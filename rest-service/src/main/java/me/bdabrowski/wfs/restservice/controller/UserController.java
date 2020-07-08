@@ -7,6 +7,7 @@ import me.bdabrowski.wfs.restservice.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.http.converter.json.GsonBuilderUtils;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -27,7 +28,7 @@ public class UserController {
     public ResponseEntity<User> selectByEmailAndPassword(@PathVariable(value = "email") String email,
                                                          @PathVariable(value = "password") String password) {
         return userRepository
-                .getByEmailAndPassword(email, password)
+                .getUserByEmailAndPassword(email, password)
                 .map(user -> ResponseEntity.ok().body(user))
                 .orElse(ResponseEntity.notFound().build());
     }

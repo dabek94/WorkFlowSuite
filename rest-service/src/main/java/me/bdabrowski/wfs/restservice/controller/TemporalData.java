@@ -24,22 +24,18 @@ public class TemporalData {
 
     @PostConstruct
     public void init() {
-        for (User user :
-                createUsers()) {
-            user.setAddress(createAddresses());
-            userRepository.save(user);
-         }
         for (Company company :
                 createCompanies()) {
-            company.setJobOpenings(createJobOpenings());
+            createJobOpenings().forEach(jobOpening -> company.addJobOpening(jobOpening));
+            createUsers().forEach(user -> {user.setAddress(createAddresses()); company.addEmployee(user);});
             companyRepository.save(company);
         }
     }
 
     private List<User> createUsers() {
         List<User> users = List.of(
-                new User("email1@pl", "test", "Andrzej", "Andrzejowski", "employee", 5L),
-                new User("email2@pl", "test", "Sebastian", "Sabastianski", "employer", 5L)
+                new User("email1@pl", "test", "Andrzej", "Andrzejowski", "employee"),
+                new User("email2@pl", "test", "Sebastian", "Sabastianski", "employer")
         );
         return users;
     }

@@ -1,5 +1,6 @@
 package me.bdabrowski.wfs.restservice.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
@@ -22,7 +23,7 @@ public class Company {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(nullable = false)
-    private Long id;
+    private Long companyId;
 
     @Column()
     private Long owner_id;
@@ -30,11 +31,15 @@ public class Company {
     @Column()
     private String name;
 
-    /**
-     * A List of JobOpenings created by company based on company_id
-     */
-    @OneToMany(cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "company", cascade = CascadeType.ALL,
+            fetch = FetchType.LAZY, orphanRemoval = true)
+    @JsonIgnoreProperties("company")
     private List<JobOpening> jobOpenings = new ArrayList<>();
+
+    @OneToMany(mappedBy = "company",cascade = CascadeType.ALL,
+            fetch = FetchType.LAZY,orphanRemoval = true)
+    @JsonIgnoreProperties("company")
+    private List<User> employees = new ArrayList<>();
 
     public Company() {
     }
@@ -45,13 +50,22 @@ public class Company {
         this.name = name;
     }
 
-    /**
-     * Sets the
-     *
-     * @param jobOpenings
-     */
-    public void setJobOpenings(List<JobOpening> jobOpenings) {
-        this.jobOpenings = jobOpenings;
+    public void addJobOpening(JobOpening jobOpening){
+        jobOpenings.add(jobOpening);
+        jobOpening.setCompany(this);
+    }
+    public void removeJobOpening(JobOpening jobOpening){
+        jobOpenings.remove(jobOpening);
+        jobOpening.setCompany(null);
+    }
+
+    public void addEmployee(User user){
+        employees.add(user);
+        user.setCompany(this);
+    }
+    public void removeEmployee(User user){
+        employees.remove(user);
+        user.setCompany(null);
     }
 
 }

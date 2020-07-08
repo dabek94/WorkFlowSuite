@@ -50,7 +50,7 @@ public class RegisterFragment extends Fragment implements View.OnClickListener {
 
         //action buttons
         view.findViewById(R.id.text_register_core_cancel).setOnClickListener(this);
-        view.findViewById(R.id.newUserSubmit).setOnClickListener(this);
+        view.findViewById(R.id.button_register_core_next).setOnClickListener(this);
     }
 
     private boolean isFormConditionsMet(){
