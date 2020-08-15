@@ -1,28 +1,31 @@
 package me.bdabrowski.wfs.restservice.controller;
 
 import me.bdabrowski.wfs.restservice.model.Company;
+import me.bdabrowski.wfs.restservice.model.User;
 import me.bdabrowski.wfs.restservice.repository.CompanyRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 @RequestMapping("/companies")
-@CrossOrigin
+@CrossOrigin(origins = "http://localhost:3000")
 public class CompanyController {
 
     @Autowired
     CompanyRepository companyRepository;
 
-    @GetMapping("{id}")
+    @GetMapping(value = "{id}", headers = "WFS-API-VERSION=1")
     public ResponseEntity<Company> selectCompany(@PathVariable(value = "id") Long id) {
         return companyRepository.findById(id)
                 .map(company -> ResponseEntity.ok().body(company))
                 .orElse(ResponseEntity.notFound().build());
     }
 
-    @PostMapping()
+    @PostMapping(headers = "WFS-API-VERSION=1")
     public ResponseEntity<Company> createCompany(@RequestBody Company company) {
         try {
             Company _company = companyRepository.save(company);
@@ -42,5 +45,11 @@ public class CompanyController {
                     companyRepository.save(company);
                     return ResponseEntity.ok().body(company);
                 }).orElse(ResponseEntity.notFound().build());
+    }
+    @GetMapping("/getEmployees/{id}")
+    public ResponseEntity<List<User>> getAllEmployees(@PathVariable(value = "id") Long id){
+        return companyRepository.findById(id)
+                .map(company -> ResponseEntity.ok().body(company.getEmployees()))
+                .orElse(ResponseEntity.notFound().build());
     }
 }

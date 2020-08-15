@@ -4,7 +4,8 @@ import java.util.Objects;
 import java.util.stream.Stream;
 
 /**
- * Address model class based on Restful service documentation
+ * Model class used representing Address Entity returned from REST service in form of JSON
+ * Address has relation OneToOne with Model class User
  */
 public class Address {
     private String street;

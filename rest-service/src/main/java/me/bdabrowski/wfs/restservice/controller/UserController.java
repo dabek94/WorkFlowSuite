@@ -1,11 +1,13 @@
 package me.bdabrowski.wfs.restservice.controller;
 
+import com.mysql.cj.xdevapi.JsonArray;
 import javassist.NotFoundException;
 import me.bdabrowski.wfs.restservice.model.Address;
 import me.bdabrowski.wfs.restservice.model.User;
 import me.bdabrowski.wfs.restservice.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.http.converter.json.GsonBuilderUtils;
 import org.springframework.web.bind.annotation.*;
@@ -18,36 +20,30 @@ import java.util.Optional;
  */
 @RestController
 @RequestMapping("/users")
-@CrossOrigin
+@CrossOrigin(origins = "http://localhost:3000")
 public class UserController {
 
     @Autowired
     UserRepository userRepository;
 
-
-
-    @GetMapping("{companyId}")
-    public ResponseEntity<List<User>> selectUsersByCompanyId(@PathVariable(value = "companyId") Long companyId) {
-        return userRepository.getUsersByCompanyId(companyId)
-                .map(users -> ResponseEntity.ok().body(users))
-                .orElse(ResponseEntity.notFound().build());
-    }
-    @GetMapping("duplicate/{email}")
-    public ResponseEntity<Boolean> doesUserWithGivenEmailExist(@PathVariable(value = "email") String email){
-        return userRepository.getUserByEmail(email)
-                .map(user -> ResponseEntity.ok().body(true))
+    @GetMapping(produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<User> getUser(@RequestBody User user){
+        return userRepository.getUserById(user.getId())
+                .map(persistantUser -> ResponseEntity.ok().body(persistantUser))
                 .orElse(ResponseEntity.notFound().build());
     }
 
-    @PostMapping("/{email}/{password}")
-    public ResponseEntity<User> selectByEmailAndPassword(@PathVariable(value = "email") String email,
-                                                         @PathVariable(value = "password") String password) {
-        return userRepository
-                .getUserByEmailAndPassword(email, password)
+    @PostMapping(value = "/login", produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<User> validateUser(@RequestBody User attemptingUser) {
+          return userRepository
+                .getUserByEmailAndPassword(attemptingUser.getEmail(), attemptingUser.getPassword())
                 .map(user -> ResponseEntity.ok().body(user))
                 .orElse(ResponseEntity.notFound().build());
     }
-    @PostMapping()
+    //TODO Trying to add a duplicate: 409 Conflict ("The request could not be completed
+    // due to a conflict with the current state of the resource.")
+    //https://stackoverflow.com/questions/3290182/rest-http-status-codes-for-failed-validation-or-invalid-duplicate
+    @PostMapping("/create")
     public ResponseEntity<User> createUser(@RequestBody User user) {
         try {
             User newUser = userRepository.save(user);
@@ -57,6 +53,13 @@ public class UserController {
         }
 
     }
+    @GetMapping(value = "{companyId}", produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<List<User>> selectUsersByCompanyId(@PathVariable(value = "companyId") Long companyId) {
+        return userRepository.getUsersByCompanyId(companyId)
+                .map(users -> ResponseEntity.ok().body(users))
+                .orElse(ResponseEntity.notFound().build());
+    }
+
     //THIS REQUIRES NOT NULL IN FORM
     @PutMapping("/update/email/{id}")
     public ResponseEntity<User> updateEmail(@RequestBody User user, @PathVariable("id") Long id) {
@@ -112,4 +115,11 @@ public class UserController {
             return ResponseEntity.ok().body(user);
         }).orElse(ResponseEntity.notFound().build());
     }
+    /*
+    @GetMapping("duplicate/{email}")
+    public ResponseEntity<Boolean> doesUserWithGivenEmailExist(@PathVariable(value = "email") String email){
+        return userRepository.getUserByEmail(email)
+                .map(user -> ResponseEntity.ok().body(true))
+                .orElse(ResponseEntity.notFound().build());
+    }*/
 }

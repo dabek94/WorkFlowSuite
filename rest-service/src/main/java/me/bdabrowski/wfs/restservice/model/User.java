@@ -1,17 +1,19 @@
 package me.bdabrowski.wfs.restservice.model;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonRootName;
 import lombok.*;
 
 import javax.persistence.*;
 
 @Entity
+@Table(name = "_user")
 @Data
 @Getter
 @Setter
 @ToString
 @RequiredArgsConstructor
+@JsonRootName(value = "user")
 public class User {
 
     @Id
@@ -51,7 +53,6 @@ public class User {
         this.lastName = lastName;
         this.userType = userType;
     }
-
     public void setAddress(Address address) {
         this.address = address;
     }
