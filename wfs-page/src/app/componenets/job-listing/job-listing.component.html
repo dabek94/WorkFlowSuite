@@ -1,0 +1,12 @@
+<table class="table table-bordered table-striped bg-dark text-white-50">
+  <thead>
+  <tr><th>Count</th><th>Position</th><th>Description</th></tr>
+  </thead>
+  <tbody>
+  <tr *ngFor="let job of jobs; let i = index">
+    <td>{{i+1}}</td>
+    <td>{{job.position}}</td>
+    <td>{{job.shortDescription}}</td>
+  </tr>
+  </tbody>
+</table>

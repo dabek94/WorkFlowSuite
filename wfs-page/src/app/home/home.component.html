@@ -1,0 +1,15 @@
+<div class="container">
+  <div class="row" *appShowCompany="false">
+    <div class="col-5 mx-auto text-center mt-5">
+      <h2 class="mt-2">You're not employed</h2>
+      <button class="btn btn-primary fa fa-search mt-2 ">Find Job</button>
+    </div>
+  </div>
+  <div class="row" *appShowCompany="true">
+    <div class="col-12 mx-auto">
+      <h2 class="text-center">
+        {{user.company.name}}
+      </h2>
+    </div>
+  </div>
+</div>

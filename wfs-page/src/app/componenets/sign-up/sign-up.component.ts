@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {UserService} from '../../shared/user.service';
 import {Router} from '@angular/router';
-import {User} from '../../model/user';
+import {User} from '../../core/model/user';
 
 @Component({
   selector: 'app-sign-up',
@@ -31,7 +31,7 @@ export class SignUpComponent implements OnInit {
         alert('user created');
         this.user = res;
         localStorage.setItem('user', JSON.stringify(this.user));
-        this.router.navigate(['/']);
+        this.router.navigate(['/jobs']);
       }, error => {
         alert('error');
       }

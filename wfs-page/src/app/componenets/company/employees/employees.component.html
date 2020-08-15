@@ -1,3 +1,12 @@
-<ul>
-<app-employee-item *ngFor="let user of users" [employee]="user"></app-employee-item>
-</ul>
+<table class="table table-bordered table-striped bg-dark text-white-50">
+  <thead>
+    <tr><th>Count</th><th>Full Name</th><th>Position</th></tr>
+  </thead>
+  <tbody>
+  <tr *ngFor="let employee of users; let i = index">
+    <td>{{i+1}}</td>
+    <td>{{employee.firstName}} {{employee.lastName}}</td>
+    <td>{{employee.userType}}</td>
+  </tr>
+  </tbody>
+</table>

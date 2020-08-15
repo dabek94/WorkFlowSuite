@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import {HttpClient} from '@angular/common/http';
-import {User} from '../../../model/user';
+import {User} from '../../../core/model/user';
 import {UserService} from '../../../shared/user.service';
+import {CompanyService} from '../../../shared/company.service';
 
 @Component({
   selector: 'app-employees',
@@ -11,14 +12,14 @@ import {UserService} from '../../../shared/user.service';
 export class EmployeesComponent implements OnInit {
   users: User[] = [];
 
-  constructor(private userService: UserService) { }
+  constructor(private companyService: CompanyService) { }
 
   ngOnInit(): void {
-    this.getAllEmployees(5);
+    this.getAllEmployees(1);
   }
 
   public getAllEmployees(companyId: number){
-    this.userService.getAllEmployees(companyId).subscribe(
+    this.companyService.getAllEmployees(companyId).subscribe(
       res => {
         this.users = res;
       }, err => {

@@ -1,0 +1,45 @@
+<header>
+<nav class="navbar navbar-light navbar-expand-md navbar-custom">
+  <button class="navbar-toggler ml-1" type="button" data-toggle="collapse" data-target="#collapsingNavbar2">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <a class="navbar-brand" href="#">
+    <img src="../../../../assets/logo.png" alt="Logo" style="width:100px;">
+  </a>
+  <div class="navbar-collapse collapse " id="collapsingNavbar2" >
+    <ul class="navbar-nav ml-auto mr-5 text-md-center text-left" *appShowAuthed="false">
+      <li class="nav-item">
+        <a class="nav-link text-body " routerLink="/">Home</a>
+      </li>
+      <li class="nav-item ">
+        <a class="nav-link text-body" routerLink="/services">Services</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link text-body" routerLink="/technologies">Technologies</a>
+      </li>
+      <li class="nav-item ">
+        <a class="nav-link text-body" routerLink="/about">About</a>
+      </li>
+    </ul>
+    <ul class="navbar-nav ml-auto mr-5 text-md-center text-left" *appShowAuthed="true">
+      <li class="nav-item">
+        <a class="nav-link text-body " routerLink="/home">Home</a>
+      </li>
+      <li class="nav-item ">
+        <a class="nav-link text-body" routerLink="/services">Company</a>
+      </li>
+      <li class="nav-item ">
+        <a class="nav-link fa fa-search text-body" routerLink="/jobs">Find Job</a>
+      </li>
+
+      <li class="nav-item">
+        <a class="nav-link fa fa-user-circle" routerLink="/settings">
+          {{ currentUser.firstName}}{{currentUser.lastName}}
+        </a>
+      </li>
+    </ul>
+
+
+  </div>
+</nav>
+</header>
