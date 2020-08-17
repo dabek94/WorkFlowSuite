@@ -2,6 +2,7 @@ package me.bdabrowski.wfs.restservice;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 
 /**
  * Restful service for WorkFlowSuite platform.

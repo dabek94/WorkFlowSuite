@@ -34,8 +34,8 @@ public class TemporalData {
 
     private List<User> createUsers() {
         List<User> users = List.of(
-                new User("email1@pl", "test", "Andrzej", "Andrzejowski", "employee"),
-                new User("email2@pl", "test", "Sebastian", "Sabastianski", "employer")
+                new User("email1@pl", "test", "Andrzej", "Andrzejowski", "ROLE_EMPLOYEE"),
+                new User("email2@pl", "test", "Sebastian", "Sabastianski", "ROLE_EMPLOYER")
         );
         return users;
     }

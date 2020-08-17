@@ -7,6 +7,6 @@ import {SharedModule} from '../shared/shared.module';
 @NgModule({
   imports: [SharedModule, SettingsRoutingModule],
   declarations: [SettingsComponent],
-  exports: [SettingsComponent]
+  exports: []
 })
 export class SettingsModule {}
