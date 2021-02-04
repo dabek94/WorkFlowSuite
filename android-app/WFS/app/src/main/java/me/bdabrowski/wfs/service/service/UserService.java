@@ -22,7 +22,6 @@ public class UserRepository {
     }
 
     private UserRepository() {
-        //TODO if user exists in the saved state
         userAPI = RetrofitService.createService(UserAPI.class);
     }
 
@@ -44,28 +43,6 @@ public class UserRepository {
             }
         });
         return user;
-    }
-
-    public MutableLiveData<Boolean> isEmailDuplicate(@NotNull String email){
-        MutableLiveData<Boolean> isDuplicate = new MutableLiveData<>();
-        userAPI.isEmailDuplicate(email).enqueue(new Callback<Boolean>() {
-            @Override
-            public void onResponse(Call<Boolean> call, Response<Boolean> response) {
-                if(response.isSuccessful()){
-                    isDuplicate.setValue(response.body());
-                    return;
-                }
-                else {
-                    isDuplicate.setValue(new Boolean(false));
-                    return;
-                }
-            }
-            @Override
-            public void onFailure(Call<Boolean> call, Throwable t) {
-                isDuplicate.setValue(null);
-            }
-        });
-        return isDuplicate;
     }
 
     public MutableLiveData<User> createUser(@NotNull User newUser) {
@@ -90,40 +67,42 @@ public class UserRepository {
 
     public MutableLiveData<User> updateEmail(@NotNull User updatingUser, @NotNull Long id){
         MutableLiveData<User> user = new MutableLiveData<>();
-        userAPI.updateEmail(updatingUser, id).enqueue(new Callback<User>() {
-            @Override
-            public void onResponse(Call<User> call, Response<User> response) {
-                if(!response.isSuccessful()){
-                    user.setValue(new User());
-                }
-                user.setValue(updatingUser);
-                return;
-            }
-
-            @Override
-            public void onFailure(Call<User> call, Throwable t) {
-                user.setValue(null);
-            }
-        });
+//        userAPI.updateEmail(updatingUser, id).enqueue(new Callback<User>() {
+//            @Override
+//            public void onResponse(Call<User> call, Response<User> response) {
+//                if(!response.isSuccessful()){
+//                    user.setValue(new User());
+//                }
+//                user.setValue(updatingUser);
+//                return;
+//            }
+//
+//            @Override
+//            public void onFailure(Call<User> call, Throwable t) {
+//                user.setValue(null);
+//            }
+//        });
         return user;
     }
+
+
     public MutableLiveData<User> updatePassword(@NotNull User updatingUser, @NotNull Long id){
         MutableLiveData<User> user = new MutableLiveData<>();
-        userAPI.updatePassword(updatingUser, id).enqueue(new Callback<User>() {
-            @Override
-            public void onResponse(Call<User> call, Response<User> response) {
-                if(!response.isSuccessful()){
-                    user.setValue(new User());
-                }
-                user.setValue(updatingUser);
-                return;
-            }
-
-            @Override
-            public void onFailure(Call<User> call, Throwable t) {
-                user.setValue(null);
-            }
-        });
+//        userAPI.updatePassword(updatingUser, id).enqueue(new Callback<User>() {
+//            @Override
+//            public void onResponse(Call<User> call, Response<User> response) {
+//                if(!response.isSuccessful()){
+//                    user.setValue(new User());
+//                }
+//                user.setValue(updatingUser);
+//                return;
+//            }
+//
+//            @Override
+//            public void onFailure(Call<User> call, Throwable t) {
+//                user.setValue(null);
+//            }
+//        });
         return user;
     }
 

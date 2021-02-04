@@ -1,16 +1,20 @@
-<div class="container-fluid bg-white">
+<div class="container-fluid background-grey">
   <div class="row text-center">
-    <div class="col-12 bg-dark text-white p-5">
+    <div class="col-12 background-grey  text-black p-5">
       <h1 class="mb-3">All-in-one management platform for your business</h1>
       <h5><b>Manage</b> your company, <b>improve</b> the overall workflow, <b>grow</b> as a company</h5>
-      <button [routerLink]="['login']" class="btn btn-success  mt-3">Get started</button>
+      <button [routerLink]="['login']" class="btn btn-grad mt-3">Get started</button>
     </div>
     <div>
     </div>
   </div>
-  <div class="row card-deck-bg">
+
+  <!-- cards -->
+  <div class="row card-deck-bg ">
     <div class="col-8 p-5 mx-auto">
       <div class="card-deck p-4">
+        <!-- Card one -->
+
         <div class="card mb-4">
           <div class="view overlay">
             <img class="card-img-top" src="https://thumbor.forbes.com/thumbor/fit-in/1200x0/filters%3Aformat%28jpg%29/https%3A%2F%2Fblogs-images.forbes.com%2Falejandrocremades%2Ffiles%2F2018%2F12%2Fbusiness-3605367_1920-1200x741.jpg"
@@ -19,28 +23,31 @@
               <div class="mask rgba-white-slight"></div>
             </a>
           </div>
-          <div class="card-body bg-dark text-white">
+          <div class="card-body bg-dark text-center text-white">
             <h4 class="card-title">Simple management</h4>
             <p class="card-text">Simple management with custom build user interface lets you manage your company via website or dedicated Android application
               content.</p>
-            <button type="button" class="btn btn-primary btn-md text-white">Read more</button>
+            <button type="button" class="btn card-button btn-md text-white">Read more</button>
           </div>
         </div>
+        <!-- Card two -->
         <div class="card mb-4">
           <div class="view overlay">
-            <img class="card-img-top" src="https://entrepreneurhandbook.co.uk/wp-content/uploads/2015/06/Online-business-idea-generation.jpg"
+            <img class="card-img-top" src="https://dispatch.m.io/wp-content/uploads/2020/07/Best-software-for-small-business.png"
                  alt="Card image cap">
             <a href="#!">
               <div class="mask rgba-white-slight"></div>
             </a>
           </div>
-          <div class="card-body bg-dark">
+          <div class="card-body text-center bg-dark">
             <h4 class="card-title text-white">Build for any business</h4>
             <p class="card-text text-white">Create your company modules based on your needs. Choose from modules like warehouse, employee management or orders handle.</p>
-            <button type="button" class="btn btn-primary btn-md text-white">Read more</button>
+            <button type="button" class="btn card-button btn-md text-white">Read more</button>
           </div>
         </div>
-        <div class="card mb-4">
+
+        <!-- Card three -->
+        <div class="card mb-4 text-center">
           <div class="view overlay">
             <img class="card-img-top" src="https://www.thesmallbusinesssite.co.za/wp-content/uploads/2019/05/positions-730x495.jpg"
                  alt="Card image cap">
@@ -51,7 +58,7 @@
           <div class="card-body bg-dark">
             <h4 class="card-title text-white">Find new connections</h4>
             <p class="card-text text-white">Meet new business partners, search for employees, create job opening, find new suppliers or merge companies to grow together.</p>
-            <button type="button" class="btn btn-primary btn-md text-white ">Read more</button>
+            <button type="button" class="btn card-button btn-md text-white ">Read more</button>
           </div>
         </div>
       </div>

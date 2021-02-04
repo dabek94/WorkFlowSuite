@@ -1,4 +1,4 @@
-package me.bdabrowski.wfs.view.fragments.menu.employer;
+package me.bdabrowski.wfs.view.fragments.menu;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;

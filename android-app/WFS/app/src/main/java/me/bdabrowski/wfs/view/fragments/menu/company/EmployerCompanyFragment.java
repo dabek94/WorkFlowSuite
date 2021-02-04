@@ -39,11 +39,9 @@ public class EmployerCompanyFragment extends Fragment implements View.OnClickLis
     }
 
     private int createCompanyViewId(User user) {
-        if (user.isUserEmployed()) {
-            return R.layout.fragment_employer_company;
-        } else {
-            return R.layout.fragment_employer_company_none;
-        }
+        //unemployeed or employeed
+        return R.layout.fragment_employer_company_none;
+
     }
 
     private void setClickListener(View view){

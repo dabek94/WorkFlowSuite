@@ -13,15 +13,18 @@ import androidx.fragment.app.Fragment;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 
+import java.io.Serializable;
+
 import me.bdabrowski.wfs.R;
 import me.bdabrowski.wfs.service.model.Address;
+import me.bdabrowski.wfs.service.model.Company;
 import me.bdabrowski.wfs.service.model.User;
 
 import static me.bdabrowski.wfs.view.fragments.registration.RegisterFragment.NEW_USER_ARG;
 
 public class UserDetailsFragment extends Fragment implements View.OnClickListener {
 
-    private EditText mFirstName, mLastName, mStreet, mCity;
+    private EditText mName, mStreet, mCity, mCountry;
     private NavController navController;
 
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState){
@@ -36,31 +39,26 @@ public class UserDetailsFragment extends Fragment implements View.OnClickListene
         }
 
     private void instantiateComponents(View view){
-        //form
-        mFirstName = view.findViewById(R.id.newUserFirstName);
-        mLastName = view.findViewById(R.id.newUserLastName);
-        mStreet = view.findViewById(R.id.newUserAddress);
-        mCity = view.findViewById(R.id.newUserCity);
-        //submit button
+        mName = view.findViewById(R.id.newCompanyName);
+        mStreet = view.findViewById(R.id.newCompanyStreet);
+        mCity = view.findViewById(R.id.newCompanyCity);
+        mCountry = view.findViewById(R.id.newCompanyCountry);
+
         view.findViewById(R.id.newUserSubmit).setOnClickListener(this);
     }
 
     @Override
     public void onClick(View v) {
-        navController.navigate(R.id.action_userPersonalInfo_to_accountType, createUserBundle());
+        navController.navigate(R.id.action_userPersonalInfo_to_newEmployeeWelcome, createUserBundle());
     }
 
     private Bundle createUserBundle(){
+        Company company = new Company();
         User user = (User) getArguments().get(NEW_USER_ARG);
-        user.setFirstName(mFirstName.getText().toString());
-        user.setLastName(mLastName.getText().toString());
-        Address _address = new Address();
-        _address.setStreet(mStreet.getText().toString());
-        _address.setCity(mCity.getText().toString());
-        user.setAddress(_address);
+        company.setName(mName.getText().toString());
 
         Bundle bundle = new Bundle();
-        bundle.putSerializable(NEW_USER_ARG, user);
+        bundle.putSerializable(NEW_USER_ARG, (Serializable) user);
         return bundle;
     }
 }

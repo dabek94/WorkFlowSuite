@@ -1,26 +1,29 @@
 <header>
-<nav class="navbar navbar-light navbar-expand-md navbar-custom">
+<nav class="navbar navbar-expand-sm navbar-custom">
+  <a class="navbar-brand" href="#">
+  <img src="../../../../assets/logo.png" alt="Logo" style="width:150px; margin-left: 50px;">
+</a>
   <button class="navbar-toggler ml-1" type="button" data-toggle="collapse" data-target="#collapsingNavbar2">
     <span class="navbar-toggler-icon"></span>
   </button>
-  <a class="navbar-brand" href="#">
-    <img src="../../../../assets/logo.png" alt="Logo" style="width:100px;">
-  </a>
   <div class="navbar-collapse collapse " id="collapsingNavbar2" >
+    <!-- unsigned -->
     <ul class="navbar-nav ml-auto mr-5 text-md-center text-left" *appShowAuthed="false">
       <li class="nav-item">
-        <a class="nav-link text-body " routerLink="/">Home</a>
+        <a class="nav-link" routerLink="/">Home</a>
       </li>
       <li class="nav-item ">
-        <a class="nav-link text-body" routerLink="/services">Services</a>
+        <a class="nav-link" routerLink="/services">Services</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link text-body" routerLink="/technologies">Technologies</a>
+        <a class="nav-link" routerLink="/technologies">Technologies</a>
       </li>
       <li class="nav-item ">
-        <a class="nav-link text-body" routerLink="/about">About</a>
+        <a class="nav-link " routerLink="/about">About</a>
       </li>
     </ul>
+
+    <!-- signed in -->
     <ul class="navbar-nav ml-auto mr-5 text-md-center text-left" *appShowAuthed="true">
       <li class="nav-item">
         <a class="nav-link text-body " routerLink="/home">Home</a>
